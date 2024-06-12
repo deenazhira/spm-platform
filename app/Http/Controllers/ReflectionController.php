@@ -55,11 +55,11 @@ class ReflectionController extends Controller
     }
 
     public function destroy(Reflection $reflection)
-    {
-        $reflection->delete();
+{
+    $reflection->delete();
 
-        return redirect()->route('reflections.index')
-                         ->with('success', 'Reflection deleted successfully.');
-    }
+    return redirect()->route('reflection.index')
+                     ->with('success', 'Reflection deleted successfully.');
+}
 }
 

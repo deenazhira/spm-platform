@@ -23,6 +23,11 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('reflections', ReflectionController::class);
+    Route::get('/reflection', [ReflectionController::class, 'index'])->name('reflection.index');
+
+    Route::delete('/reflection/{reflection}', [ReflectionController::class, 'destroy'])
+     ->name('reflection.destroy');
+
 });
 
 use App\Http\Controllers\RegisterController;

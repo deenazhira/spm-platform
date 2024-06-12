@@ -43,6 +43,7 @@
                                         @method('DELETE')
                                         <button class="delete-btn bg-red-500 text-white py-1 px-3 rounded-lg">Delete</button>
                                     </form>
+
                                 </div>
                             </div>
                         @empty
