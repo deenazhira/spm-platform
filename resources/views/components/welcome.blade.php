@@ -126,6 +126,11 @@
             <li><a href="/chapter" class="nav-link scrollto">Chapter</a></li>
         </ul>
     </div>
+
+   {{-- sini utk content dashboard --}}
+    <div class="logo"><img src="LOGO.PNG" alt="Logo"></div>
+
+
 </body>
     <script>
         function toggleSidebar() {
