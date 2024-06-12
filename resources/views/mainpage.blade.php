@@ -11,7 +11,7 @@
           <h1 class="hero-title mb-4">SPM Learning Platform</h1>
           <p class="hero-subtitle"><span class="typed" data-typed-items="Additional Mathematics, Bahasa Melayu, English, Physics, Chemistry Science, Mathematics, Biology Science"></span></p>
           <p class="pt-3">
-            <a class="btn btn-primary btn-custom js-scroll px-4" href="/about" role="button">ABOUT ME</a>
+            <a class="btn btn-primary btn-custom js-scroll px-4" href="/register" role="button">Register Now</a>
           </p>
         </div>
       </div>
