@@ -1,19 +1,16 @@
-
 <x-app-layout>
 
     <x-slot name="header">
-
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Reflection Page') }}
         </h2>
 
         <link href="{{ asset('style.css') }}" rel="stylesheet">
-<link href="{{ asset('style.css') }}" rel="stylesheet">
-
     </x-slot>
 
     <style>
-       .animate-bounce {
+        /* Your existing styles */
+        .animate-bounce {
             animation: bounce 1s infinite;
         }
 
@@ -33,56 +30,91 @@
             transform: scale(1.1);
             transition: transform 0.3s ease;
         }
+
         .container {
             padding: 20px;
             border-radius: 8px;
         }
+
         .header h1 {
             margin: 0;
             font-weight: 700;
             font-size: 2em;
             color: #333;
         }
+
         .form-group label {
             font-weight: 700;
             margin-bottom: 5px;
+            color: #6b7280; /* Gray */
         }
-        .form-group textarea {
+
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            height: 100px;
             padding: 10px;
             font-size: 1em;
-            border: 1px solid #ddd;
+            border: 1px solid #d1d5db; /* Light gray */
             border-radius: 4px;
+            background-color: #f3f4f6; /* Lighter gray */
+            color: #4b5563; /* Dark gray */
         }
+
+        .form-group select {
+            margin-top: 4px;
+        }
+
         .buttons .submit-btn {
-            background-color: #3182ce; /* Blue */
+            background-color: #10b981; /* Green */
             color: white;
+            border: none;
+            transition: background-color 0.3s ease;
         }
+
+        .buttons .submit-btn:hover {
+            background-color: #047857; /* Darker green on hover */
+        }
+
         .reflection .reflection-item {
-            background: #f9f9f9;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            background: #ffffff; /* White */
+            padding: 12px;
+            border: 1px solid #e5e7eb; /* Light gray */
+            border-radius: 8px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .reflection-item p {
             margin: 0;
             flex: 1;
+            color: #4b5563; /* Dark gray */
         }
+
         .reflection-item .action-btns button {
             margin-left: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         .action-btns .edit-btn {
-            background-color: #f6ad55; /* Orange */
+            background-color: #f59e0b; /* Orange */
             color: white;
         }
+
+        .action-btns .edit-btn:hover {
+            background-color: #dd6b20; /* Darker orange on hover */
+        }
+
         .action-btns .delete-btn {
-            background-color: #e53e3e; /* Red */
+            background-color: #ef4444; /* Red */
             color: white;
+        }
+
+        .action-btns .delete-btn:hover {
+            background-color: #dc2626; /* Darker red on hover */
         }
     </style>
 
@@ -105,9 +137,26 @@
 
                         @csrf
                         <div class="form-group mb-4">
+                            <label for="subject" class="block font-medium text-lg mb-2">Select Subject:</label>
+                            <select id="subject" name="subject" required class="border rounded-lg">
+                                <option value="" selected disabled>Select a subject</option>
+                                <option value="Bahasa Melayu">Bahasa Melayu</option>
+                                <option value="English">English</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Sejarah">Sejarah</option>
+                                <option value="Pendidikan Islam">Pendidikan Islam</option>
+                                <option value="Additional Mathematics">Additional Mathematics</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-4">
                             <label for="reflection" class="block font-medium text-lg mb-2">Your Reflection:</label>
                             <textarea id="reflection" name="reflection" required class="w-full p-2 border rounded-lg"></textarea>
                         </div>
+
                         <div class="buttons flex justify-between flex-wrap gap-4">
                             <button type="submit" class="submit-btn bg-blue-500 text-white py-2 px-4 rounded-lg">Submit</button>
                         </div>
@@ -146,3 +195,4 @@
         }
     </script>
 </x-app-layout>
+
