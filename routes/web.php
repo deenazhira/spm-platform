@@ -46,4 +46,13 @@ Route::post('/login', [RegisterController::class, 'login']);
 // Logout Route
 Route::post('/logout', [RegisterController::class, 'logout'])->name('logout');
 
+// routes/web.php
+
+use App\Http\Controllers\StudentSubjectController;
+
+Route::post('/student/add-subject/{subject}', [StudentSubjectController::class, 'addSubject'])->name('student.subject.add');
+use App\Http\Controllers\SubjectController;
+
+Route::get('/add-subject', [SubjectController::class, 'create'])->name('add.subject');
+
 

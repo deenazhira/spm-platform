@@ -19,4 +19,10 @@ class SubjectController extends Controller
         $topics = $subject->topics;
         return view('subjects.show', compact('subject', 'topics'));
     }
+
+    public function create()
+    {
+        return view('subjects.create');
+    }
 }
+

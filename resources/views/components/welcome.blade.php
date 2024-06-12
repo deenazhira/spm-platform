@@ -96,6 +96,24 @@
             z-index: 1000;
         }
 
+        /* Add Subject Button Styles */
+        .add-subject-btn {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-subject-btn:hover {
+            background-color: #0056b3;
+        }
+
         /* Responsive Styles */
         @media screen and (max-width: 600px) {
             .sidebar {
@@ -181,6 +199,13 @@
                    </div>
                </div>
                @endforeach
+           </div>
+
+           <!-- Add Subject Button -->
+           <div class="row">
+               <div class="col-sm-12 text-center">
+                   <a href="{{ route('add.subject') }}" class="add-subject-btn">ADD A SUBJECT</a>
+               </div>
            </div>
        </div>
    </section>
