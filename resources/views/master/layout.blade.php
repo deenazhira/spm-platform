@@ -34,24 +34,44 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+<header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
         <div class="logo-container">
             <a href="/" class="logo"><img src="assets/img/logo.PNG" alt="" class="img-fluid"></a>
             <h1 class="logo-text"><a href="/">BrainBoost</a></h1>
         </div>
-<style>
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
 
-        .logo-text {
-            margin-left: 10px; /* Adjust as needed */
-            color:aliceblue;
-        }
-          </style>
+        <style>
+            .logo-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .logo-text {
+                margin-left: 10px; /* Adjust as needed */
+                color: aliceblue;
+                transition: color 0.3s; /* Smooth color transition */
+            }
+
+            .logo-text.white {
+                color: white; /* Change to white when scrolled */
+            }
+        </style>
+
+        <script>
+            window.addEventListener('scroll', function() {
+                var header = document.getElementById('header');
+                var logoText = document.querySelector('.logo-text');
+
+                if (window.scrollY > 0) {
+                    logoText.classList.add('white');
+                } else {
+                    logoText.classList.remove('white');
+                }
+            });
+        </script>
+
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="/">Home</a></li>
@@ -103,15 +123,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script>
-    window.addEventListener('scroll', function() {
-      var header = document.getElementById('header');
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
+
 </body>
 
 </html>
