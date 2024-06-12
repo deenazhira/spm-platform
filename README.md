@@ -1,3 +1,9 @@
+# Group 
+1. Aina Najwa Maisarah Binti Mohamad Zulkarnain        (2212708)
+2. Husna Nadhirah Binti Khairul Anwar                  (2211170)
+3. Irdeena Zahierah Binti Zukipeli                     (2210496)
+4. Ahmad Syameer Syafiq bin Zulkefli                   (2121797)
+
 # SPM Student Learning Platform
 
 ## 1.0 Introduction
@@ -119,8 +125,47 @@ The main objectives of the SPM Student Learning Platform are:
 
 ## 6.0 Project System Captured Screen
 
+Mainpage
+![mainpage](https://github.com/deenazhira/spm-platform/assets/172114212/a0326d44-cb08-4445-acb2-369afc3e9518)
+
+Mainpage (Cont)
+![mainpage 2](https://github.com/deenazhira/spm-platform/assets/172114212/4f582797-93d9-4d87-aca7-7868762be23a)
+
+Mainpage (Cont)
+![mainpage 3](https://github.com/deenazhira/spm-platform/assets/172114212/673097ec-a2d7-4545-b44c-07891c640815)
+
+Register
+![register](https://github.com/deenazhira/spm-platform/assets/172114212/3f661d14-1bf0-467c-9ff0-e5c6c8b15658)
+
+Login
+![login](https://github.com/deenazhira/spm-platform/assets/172114212/69a7a033-509b-4766-a0fd-81b28ce5b2a7)
+
+Dashboard
+![dashboard](https://github.com/deenazhira/spm-platform/assets/172114212/5fdef291-cea0-403b-b2b9-494e6c6f657a)
+
+Manage (Profile and Logout)
+![profile-logout](https://github.com/deenazhira/spm-platform/assets/172114212/8251f3e1-7d8e-48ac-9ebf-905ec05e4bf2)
+
+Profile
+![profile 1](https://github.com/deenazhira/spm-platform/assets/172114212/3640ad1f-1cc8-481f-882d-16c4af25b924)
+
+Profile(Cont)
+![profile 2](https://github.com/deenazhira/spm-platform/assets/172114212/2f9cfa62-505b-4cdd-bab1-99477122d6c8)
+
+Sidebar
+![Side bar](https://github.com/deenazhira/spm-platform/assets/172114212/4a23cdcb-4114-44fa-aafc-efd0ed51ddc9)
+
+Reflections
+![reflection](https://github.com/deenazhira/spm-platform/assets/172114212/56445437-8bfb-4d1c-9764-55c63c8b6658)
+
+Subjects
+![Subjects](https://github.com/deenazhira/spm-platform/assets/172114212/c400c543-a7cf-425c-9f22-403f72f0aa89)
+
+
 ## 7.0 Challenges/Difficulties
-1. 
+1. Challenge to debug all errors that happened when trying to install and run the codes
+2. Difficulties in connecting the model, view and controllers
+3. Difficulties in understanding the use github.
 
 ## 8.0 REFERENCES
   
