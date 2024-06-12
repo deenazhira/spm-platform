@@ -7,12 +7,12 @@
     <title>Create New Subject</title>
 </head>
 <body>
-    <h1>Create New Subject</h1>
+    <h1>ADD A SUBJECT</h1>
     <form action="{{ route('subjects.store') }}" method="POST">
         @csrf
         <label for="title">Subject Title:</label><br>
         <input type="text" id="title" name="title"><br><br>
-        <button type="submit">Create Subject</button>
+        <button type="submit">Add Subject</button>
     </form>
 </body>
 </html>
