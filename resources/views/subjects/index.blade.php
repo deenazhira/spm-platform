@@ -16,15 +16,15 @@
         </div>
         <div class="row">
             @foreach ([
-                ['title' => 'Bahasa Melayu', 'image' => 'assets/img/work-1.jpg'],
-                ['title' => 'English', 'image' => 'assets/img/work-2.jpg'],
-                ['title' => 'Mathematics', 'image' => 'assets/img/work-3.jpg'],
-                ['title' => 'Physics', 'image' => 'assets/img/work-4.jpg'],
-                ['title' => 'Chemistry', 'image' => 'assets/img/work-5.jpg'],
-                ['title' => 'Biology', 'image' => 'assets/img/work-6.jpg'],
-                ['title' => 'Sejarah', 'image' => 'assets/img/work-6.jpg'],
-                ['title' => 'Pendidikan Islam', 'image' => 'assets/img/work-6.jpg'],
-                ['title' => 'Additional Mathematics', 'image' => 'assets/img/work-6.jpg']
+                ['title' => 'Bahasa Melayu', 'image' => 'assets/img/bm.jpg'],
+                ['title' => 'English', 'image' => 'assets/img/english.jpg'],
+                ['title' => 'Mathematics', 'image' => 'assets/img/maths.jpeg'],
+                ['title' => 'Physics', 'image' => 'assets/img/physics.png'],
+                ['title' => 'Chemistry', 'image' => 'assets/img/chemistry.jpg'],
+                ['title' => 'Biology', 'image' => 'assets/img/biology.png'],
+                ['title' => 'Sejarah', 'image' => 'assets/img/sejarah.jpg'],
+                ['title' => 'Pendidikan Islam', 'image' => 'assets/img/agama.png'],
+                ['title' => 'Additional Mathematics', 'image' => 'assets/img/addmath.jpg']
             ] as $subject)
             <div class="col-md-4">
                 <div class="work-box">

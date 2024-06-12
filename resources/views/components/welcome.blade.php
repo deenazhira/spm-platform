@@ -168,11 +168,11 @@
                 ['title' => 'English', 'code' => 'ENGL 1234', 'image' => 'assets/img/english.jpg'],
                 ['title' => 'Mathematics', 'code' => 'MATH 101', 'image' => 'assets/img/maths.jpeg'],
                 ['title' => 'Physics', 'code' => 'PHL 668', 'image' => 'assets/img/physics.png'],
-                ['title' => 'Chemistry', 'code' => 'CHEM 555', 'image' => 'assets/img/chem.jpg'],
-                ['title' => 'Biology', 'code' => 'BIO 303', 'image' => 'assets/img/work-6.jpg'],
-                ['title' => 'Sejarah', 'code' => 'SJRH 440', 'image' => 'assets/img/work-6.jpg'],
-                ['title' => 'Pendidikan Islam', 'code' => 'PAI 202', 'image' => 'assets/img/work-6.jpg'],
-                ['title' => 'Additional Mathematics', 'code' => 'ADDM 202', 'image' => 'assets/img/work-6.jpg']
+                ['title' => 'Chemistry', 'code' => 'CHEM 555', 'image' => 'assets/img/chemistry.jpg'],
+                ['title' => 'Biology', 'code' => 'BIO 303', 'image' => 'assets/img/biology.png'],
+                ['title' => 'Sejarah', 'code' => 'SJRH 440', 'image' => 'assets/img/sejarah.jpg'],
+                ['title' => 'Pendidikan Islam', 'code' => 'PAI 202', 'image' => 'assets/img/agama.png'],
+                ['title' => 'Additional Mathematics', 'code' => 'ADDM 202', 'image' => 'assets/img/addmath.jpg']
             ] as $subject)
             <div class="col-md-4">
                    <div class="work-box">

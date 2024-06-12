@@ -40,13 +40,13 @@
             margin: 0;
             font-weight: 700;
             font-size: 2em;
-            color: #333;
+            color: #020202;
         }
 
         .form-group label {
             font-weight: 700;
             margin-bottom: 5px;
-            color: #6b7280; /* Gray */
+            color: #32261a; /* Gray */
         }
 
         .form-group textarea,
@@ -54,10 +54,10 @@
             width: 100%;
             padding: 10px;
             font-size: 1em;
-            border: 1px solid #d1d5db; /* Light gray */
+            border: 1px solid #36301b; /* Light gray */
             border-radius: 4px;
-            background-color: #f3f4f6; /* Lighter gray */
-            color: #4b5563; /* Dark gray */
+            background-color: #fff0e0; /* Lighter gray */
+            color: #030303; /* Dark gray */
         }
 
         .form-group select {
@@ -65,14 +65,15 @@
         }
 
         .buttons .submit-btn {
-            background-color: #10b981; /* Green */
+            background-color: #2e2000; /* Green */
             color: white;
             border: none;
             transition: background-color 0.3s ease;
         }
 
         .buttons .submit-btn:hover {
-            background-color: #047857; /* Darker green on hover */
+            background-color: #fcf0da;
+            color:  #2e220a/* Darker green on hover */
         }
 
         .reflection .reflection-item {
