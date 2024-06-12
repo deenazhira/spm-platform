@@ -17,8 +17,8 @@ By integrating the Laravel MVC framework, the platform ensures scalability, secu
 The core features of the platform include:
 - User Authentication
 - Chapter Management
-- Reflection Journals
-- Profile Viewing
+- Reflection Feedback
+- Profile Manage
 
 The SPM Student Learning Platform aims to empower students with the tools and resources they need to succeed academically while fostering a culture of lifelong learning and self-improvement. By harnessing the power of technology, the platform strives to revolutionize the way SPM students engage with their studies, paving the way for a brighter future.
 
@@ -66,19 +66,8 @@ The main objectives of the SPM Student Learning Platform are:
 #### ii) View List of Subject
 - Display list of subject added
 - Options to edit or delete
-  
-#### iii) Edit Subject Details
-- Allow user to edit existing subject details
-- Form to edit chapter details
-- Update chapter details in the database after submission
 
-#### iv) Delete Subject
-- Pop-up box to confirm deletion
-- Remove chapter from database
-
-
-### Reflection Journal
-
+### Reflection Feedback
 #### i) Add
 - Allow students to write their reflection on what they have learned
 - Form to enter reflection details based on topic selection
@@ -99,21 +88,26 @@ The main objectives of the SPM Student Learning Platform are:
 - Options to view, edit, or delete
 
 
-### Profile
+### Profile manage
 
-#### i) View Profile Details
-- Fetch student’s details from the database
-- Display student’s details
-- Options to edit or delete information
+#### i) View profile details
+-Fetch student’s details from the database
+-Display student’s name and email
+-There are options to edit or update
 
-#### ii) View Achievements
-- Allow students to see their achievements based on interactions with the platform
-- Fetch achievements from the database
-- Display list of achievements 
+#### ii) Password
+-Edit password
+-Create and save new password
 
-#### iii) View Registered Subjects
-- Fetch registered subjects from the database
-- Display list of registered subjects
+#### iii) Authentication
+-Enable two-factor authentication
+
+#### iv) Terminate browser session
+-Log out from any browser log in
+
+#### v) Delete account
+-Delete the existing user account
+
 
 
 ## 4.0 ER Diagram
