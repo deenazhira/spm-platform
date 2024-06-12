@@ -150,7 +150,8 @@ Sidebar
 ![Side bar](https://github.com/deenazhira/spm-platform/assets/172114212/4a23cdcb-4114-44fa-aafc-efd0ed51ddc9)
 
 Reflections
-![reflection](https://github.com/deenazhira/spm-platform/assets/172114212/56445437-8bfb-4d1c-9764-55c63c8b6658)
+![reflection](https://github.com/deenazhira/spm-platform/assets/172114212/f6a268be-e783-460c-a419-578c6ba81c2d)
+
 
 Subjects
 ![Subjects](https://github.com/deenazhira/spm-platform/assets/172114212/c400c543-a7cf-425c-9f22-403f72f0aa89)
