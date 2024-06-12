@@ -55,4 +55,15 @@ use App\Http\Controllers\SubjectController;
 
 Route::get('/add-subject', [SubjectController::class, 'create'])->name('add.subject');
 
+use App\Http\Controllers\ProfileController;
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/user/profile-information', [ProfileController::class, 'updateProfileInformation'])->name('user-profile-information.update');
+    Route::post('/user/password', [ProfileController::class, 'updatePassword'])->name('user-password.update');
+    Route::post('/user/two-factor-authentication', [ProfileController::class, 'enableTwoFactorAuthentication'])->name('user-two-factor-authentication.enable');
+    Route::delete('/user/two-factor-authentication', [ProfileController::class, 'disableTwoFactorAuthentication'])->name('user-two-factor-authentication.disable');
+    Route::post('/user/confirm-two-factor-authentication', [ProfileController::class, 'confirmTwoFactorAuthentication'])->name('user-two-factor-authentication.confirm');
+    Route::post('/user/logout-other-browser-sessions', [ProfileController::class, 'logoutOtherBrowserSessions'])->name('user-browser-sessions.logout');
+    Route::delete('/user', [ProfileController::class, 'deleteUser'])->name('user.delete');
+});
 
