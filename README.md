@@ -1,66 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Group 
+1. Aina Najwa Maisarah Binti Mohamad Zulkarnain        (2212708)
+2. Husna Nadhirah Binti Khairul Anwar                  (2211170)
+3. Irdeena Zahierah Binti Zukipeli                     (2210496)
+4. Ahmad Syameer Syafiq bin Zulkefli                   (2121797)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# SPM Student Learning Platform
 
-## About Laravel
+## 1.0 Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The SPM Student Learning Platform is a web application designed to support SPM students in their studies by providing a comprehensive and interactive online learning environment. Utilizing the Laravel MVC framework, the platform aims to offer a seamless user experience with features designed to meet the specific needs of SPM students.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+With the rapid advancement of technology, traditional methods of learning are evolving, and online education is becoming increasingly popular. The SPM Student Learning Platform leverages this trend by providing a convenient and accessible platform for students to engage with their studies anytime, anywhere.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+By integrating the Laravel MVC framework, the platform ensures scalability, security, and maintainability, allowing for seamless updates and enhancements over time. Through a user-friendly interface, students can navigate through various features effortlessly, making their learning journey intuitive and enjoyable.
 
-## Learning Laravel
+The core features of the platform include:
+- User Authentication
+- Chapter Management
+- Reflection Feedback
+- Profile Manage
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The SPM Student Learning Platform aims to empower students with the tools and resources they need to succeed academically while fostering a culture of lifelong learning and self-improvement. By harnessing the power of technology, the platform strives to revolutionize the way SPM students engage with their studies, paving the way for a brighter future.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 2.0 Objectives
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The main objectives of the SPM Student Learning Platform are:
+1. To provide an easy-to-use platform for SPM students to access study materials.
+2. To allow students to add, edit, and delete their reflections on what they have learned.
+3. To enable students to view and manage their profiles and track their achievements.
+4. To offer a secure login/logout system for user authentication.
 
-## Laravel Sponsors
+## 3.0 Features and Functionalities
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### User
 
-### Premium Partners
+#### i) Registration
+- Allow new user to create an account
+- Form to enter user details (username, email, password)
+- Validate email and password
+- Save user details to the database
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### ii) Login
+- Allow registered user to log in
+- Form to enter username and password
+- Validate against database entries
+- Redirect to the dashboard
 
-## Contributing
+#### iii) Logout
+- Redirect to login page after logout
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### iv) Reset Password
+- Allow user to reset their password if forgotten
+- Form to confirm email address
+- Send password reset link to user’s email
+- Form to set a new password
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Subject
 
-## Security Vulnerabilities
+#### i) Add Subject
+- Form to enter subject details (subject, topic)
+- Save subject details to the database
+- Display new subject in the subject list
+  
+#### ii) View List of Subject
+- Display list of subject added
+- Options to edit or delete
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Reflection Feedback
+#### i) Add
+- Allow students to write their reflection on what they have learned
+- Form to enter reflection details based on topic selection
+- Save reflection to the database
+- Display the new reflection in the list
 
-## License
+#### ii) Edit
+- Allow students to edit existing reflection details
+- Form to edit reflection details
+- Update reflection details in the database
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### iii) Delete
+- Pop-up box to confirm deletion
+- Remove reflection from the database
+
+#### iv) View
+- Display list of reflections written for every topic
+- Options to view, edit, or delete
+
+
+### Profile manage
+
+#### i) View profile details
+- Fetch student’s details from the database
+- Display student’s name and email
+- There are options to edit or update
+
+#### ii) Password
+- Edit password
+- Create and save new password
+
+#### iii) Authentication
+- Enable two-factor authentication
+
+#### iv) Terminate browser session
+- Log out from any browser log in
+
+#### v) Delete account
+- Delete the existing user account
+
+
+
+## 4.0 ER Diagram
+![ER Diagram](https://raw.githubusercontent.com/nadhirahanwar/WebApp-GroupProject-/main/ER%20DIAGRAM.png)
+
+
+## 5.0 Sequence Diagram
+![SEQUENCE Diagram](https://raw.githubusercontent.com/nadhirahanwar/WebApp-GroupProject-/main/SEQ%20DIAGRAM.jpg)
+
+## 6.0 Project System Captured Screen
+
+Mainpage
+![mainpage](https://github.com/deenazhira/spm-platform/assets/172114212/a0326d44-cb08-4445-acb2-369afc3e9518)
+
+Mainpage (Cont)
+![mainpage 2](https://github.com/deenazhira/spm-platform/assets/172114212/4f582797-93d9-4d87-aca7-7868762be23a)
+
+Mainpage (Cont)
+![mainpage 3](https://github.com/deenazhira/spm-platform/assets/172114212/673097ec-a2d7-4545-b44c-07891c640815)
+
+Register
+![register](https://github.com/deenazhira/spm-platform/assets/172114212/3f661d14-1bf0-467c-9ff0-e5c6c8b15658)
+
+Login
+![login](https://github.com/deenazhira/spm-platform/assets/172114212/69a7a033-509b-4766-a0fd-81b28ce5b2a7)
+
+Dashboard
+![dashboard](https://github.com/deenazhira/spm-platform/assets/172114212/5fdef291-cea0-403b-b2b9-494e6c6f657a)
+
+Manage (Profile and Logout)
+![profile-logout](https://github.com/deenazhira/spm-platform/assets/172114212/8251f3e1-7d8e-48ac-9ebf-905ec05e4bf2)
+
+Profile
+![profile 1](https://github.com/deenazhira/spm-platform/assets/172114212/3640ad1f-1cc8-481f-882d-16c4af25b924)
+
+Profile(Cont)
+![profile 2](https://github.com/deenazhira/spm-platform/assets/172114212/2f9cfa62-505b-4cdd-bab1-99477122d6c8)
+
+Sidebar
+![Side bar](https://github.com/deenazhira/spm-platform/assets/172114212/4a23cdcb-4114-44fa-aafc-efd0ed51ddc9)
+
+Reflections
+![reflection](https://github.com/deenazhira/spm-platform/assets/172114212/56445437-8bfb-4d1c-9764-55c63c8b6658)
+
+Subjects
+![Subjects](https://github.com/deenazhira/spm-platform/assets/172114212/c400c543-a7cf-425c-9f22-403f72f0aa89)
+
+
+## 7.0 Challenges/Difficulties
+1. Challenge to debug all errors that happened when trying to install and run the codes
+2. Difficulties in connecting the model, view and controllers
+3. Difficulties in understanding the use github.
+
+## 8.0 REFERENCES
+  
+1. SPMFlix. (2024, May 3). SPMFlix - Malaysia’s Largest Free Online Learning Platform
+https://www.spmflix.com/ 
+
+2. GeeksforGeeks. (2024, February 27). How to design ER diagrams for project management Software. GeeksforGeeks. https://www.geeksforgeeks.org/how-to-design-er-diagrams-for-project-management-software 
+
+3. Drexel University's School of Education. (n.d.). Benefits of Online and Virtual Learning. Retrieved from https://drexel.edu/soe/resources/student-teaching/advice/benefits-of-online-and-virtual-learning/
+
+
+
