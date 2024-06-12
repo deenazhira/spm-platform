@@ -123,7 +123,7 @@
         <ul>
             <li><a href="/" class="nav-link scrollto active">News</a></li>
             <li><a href="/reflection" class="nav-link scrollto">Reflection</a></li>
-            <li><a href="/index" class="nav-link scrollto">Chapter</a></li>
+            <li><a href="/index" class="nav-link scrollto">Subject</a></li>
         </ul>
     </div>
 
