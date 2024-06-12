@@ -25,4 +25,17 @@ Route::middleware([
     Route::resource('reflections', ReflectionController::class);
 });
 
+use App\Http\Controllers\RegisterController;
+
+// Registration Routes
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
+// Login Routes
+Route::get('/login', [RegisterController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [RegisterController::class, 'login']);
+
+// Logout Route
+Route::post('/logout', [RegisterController::class, 'logout'])->name('logout');
+
 
