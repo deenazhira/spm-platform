@@ -20,7 +20,8 @@
                         </div>
                     @endif
 
-                    <form id="reflection-form" action="{{ route('reflection.store') }}" method="POST">
+                    <form id="reflection-form" action="{{ route('reflections.store') }}" method="POST">
+
                         @csrf
                         <div class="form-group mb-4">
                             <label for="reflection" class="block font-medium text-lg mb-2">Your Reflection:</label>
@@ -32,7 +33,7 @@
                     </form>
 
                     <div class="reflection mt-6">
-                        @foreach($reflections as $reflection)
+                        @forelse($reflections as $reflection)
                             <div class="reflection-item">
                                 <p>{{ $reflection->reflection }}</p>
                                 <div class="action-btns">
@@ -44,8 +45,11 @@
                                     </form>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <p>No reflections found.</p>
+                        @endforelse
                     </div>
+
                 </div>
             </div>
         </div>

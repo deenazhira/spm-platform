@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 class ReflectionController extends Controller
 {
     public function index()
-    {
-        $reflections = Reflection::all();
-        return view('reflection.index', compact('reflections'));
-    }
+{
+    $reflections = Reflection::all();
+    return view('reflection', compact('reflections'));
+}
+
+
 
     public function create()
     {
