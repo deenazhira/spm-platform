@@ -1,17 +1,37 @@
+
 <x-app-layout>
+
     <x-slot name="header">
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Reflection Page') }}
         </h2>
+
+        <link href="{{ asset('style.css') }}" rel="stylesheet">
+<link href="{{ asset('style.css') }}" rel="stylesheet">
+
     </x-slot>
 
     <style>
-        html, body {
-            background: url('assets/img/bg-ref.jpg') no-repeat center center fixed;
-            background-size: cover;
+       .animate-bounce {
+            animation: bounce 1s infinite;
         }
-        .py-12 {
-            background-color: rgba(255, 255, 255, 0.8); /* Optional: Add an overlay */
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Add a fun hover effect to buttons */
+        .submit-btn:hover,
+        .edit-btn:hover,
+        .delete-btn:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
         .container {
             padding: 20px;
