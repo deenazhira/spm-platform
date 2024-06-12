@@ -5,60 +5,15 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <div class="container">
-                    <div class="header">
-                        <h1 class="font-bold text-2xl mb-4">Student Reflection</h1>
-                    </div>
-
-                    @if(session('success'))
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                            <strong class="font-bold">Success!</strong>
-                            <span class="block sm:inline">{{ session('success') }}</span>
-                        </div>
-                    @endif
-
-                    <form id="reflection-form" action="{{ route('reflections.store') }}" method="POST">
-
-                        @csrf
-                        <div class="form-group mb-4">
-                            <label for="reflection" class="block font-medium text-lg mb-2">Your Reflection:</label>
-                            <textarea id="reflection" name="reflection" required class="w-full p-2 border rounded-lg"></textarea>
-                        </div>
-                        <div class="buttons flex justify-between flex-wrap gap-4">
-                            <button type="submit" class="submit-btn bg-blue-500 text-white py-2 px-4 rounded-lg">Submit</button>
-                        </div>
-                    </form>
-
-                    <div class="reflection mt-6">
-                        @forelse($reflections as $reflection)
-                            <div class="reflection-item">
-                                <p>{{ $reflection->reflection }}</p>
-                                <div class="action-btns">
-                                    <button class="edit-btn bg-yellow-500 text-white py-1 px-3 rounded-lg" onclick="populateEdit({{ $reflection->id }}, '{{ $reflection->reflection }}')">Edit</button>
-                                    <form action="{{ route('reflection.destroy', $reflection->id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="delete-btn bg-red-500 text-white py-1 px-3 rounded-lg">Delete</button>
-                                    </form>
-
-                                </div>
-                            </div>
-                        @empty
-                            <p>No reflections found.</p>
-                        @endforelse
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
     <style>
+        html, body {
+            background: url('assets/img/bg-ref.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .py-12 {
+            background-color: rgba(255, 255, 255, 0.8); /* Optional: Add an overlay */
+        }
         .container {
-            background: #fff;
             padding: 20px;
             border-radius: 8px;
         }
@@ -110,6 +65,56 @@
             color: white;
         }
     </style>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <div class="container">
+                    <div class="header">
+                        <h1 class="font-bold text-2xl mb-4">Student Reflection</h1>
+                    </div>
+
+                    @if(session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <strong class="font-bold">Success!</strong>
+                            <span class="block sm:inline">{{ session('success') }}</span>
+                        </div>
+                    @endif
+
+                    <form id="reflection-form" action="{{ route('reflections.store') }}" method="POST">
+
+                        @csrf
+                        <div class="form-group mb-4">
+                            <label for="reflection" class="block font-medium text-lg mb-2">Your Reflection:</label>
+                            <textarea id="reflection" name="reflection" required class="w-full p-2 border rounded-lg"></textarea>
+                        </div>
+                        <div class="buttons flex justify-between flex-wrap gap-4">
+                            <button type="submit" class="submit-btn bg-blue-500 text-white py-2 px-4 rounded-lg">Submit</button>
+                        </div>
+                    </form>
+
+                    <div class="reflection mt-6">
+                        @forelse($reflections as $reflection)
+                            <div class="reflection-item">
+                                <p>{{ $reflection->reflection }}</p>
+                                <div class="action-btns">
+                                    <button class="edit-btn bg-yellow-500 text-white py-1 px-3 rounded-lg" onclick="populateEdit({{ $reflection->id }}, '{{ $reflection->reflection }}')">Edit</button>
+                                    <form action="{{ route('reflection.destroy', $reflection->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="delete-btn bg-red-500 text-white py-1 px-3 rounded-lg">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @empty
+                            <p>No reflections found.</p>
+                        @endforelse
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         function populateEdit(id, text) {
