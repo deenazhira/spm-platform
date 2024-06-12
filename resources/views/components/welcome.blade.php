@@ -122,63 +122,11 @@
         <div class="logo"><img src="LOGO.PNG" alt="Logo"></div>
         <ul>
             <li><a href="/" class="nav-link scrollto active">News</a></li>
-            <li><a href="/reflective" class="nav-link scrollto">Reflective</a></li>
+            <li><a href="/reflection" class="nav-link scrollto">Reflection</a></li>
             <li><a href="/chapter" class="nav-link scrollto">Chapter</a></li>
         </ul>
     </div>
-
-    <!-- Content -->
-    <div class="content">
-        <section id="work" class="portfolio-mf sect-pt5 route">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="title-box text-center header-space">
-                            <h3 class="title-a">SUBJECT SPM</h3>
-                            <p class="subtitle-a">List of Subject SPM</p>
-                            <div class="line-mf"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <?php foreach ([
-                        ['title' => 'Bahasa Melayu', 'image' => 'assets/img/work-1.jpg'],
-                        ['title' => 'English', 'image' => 'assets/img/work-2.jpg'],
-                        ['title' => 'Mathematics', 'image' => 'assets/img/work-3.jpg'],
-                        ['title' => 'Physics', 'image' => 'assets/img/work-4.jpg'],
-                        ['title' => 'Chemistry', 'image' => 'assets/img/work-5.jpg'],
-                        ['title' => 'Addmath', 'image' => 'assets/img/work-6.jpg']
-                    ] as $subject): ?>
-                    <div class="col-md-4">
-                        <div class="work-box">
-                            <a href="<?= $subject['image'] ?>" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                                <div class="work-img">
-                                    <img src="<?= $subject['image'] ?>" alt="" class="img-fluid">
-                                </div>
-                            </a>
-                            <div class="work-content">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <h2 class="w-title"><?= $subject['title'] ?></h2>
-                                        <div class="w-more">
-                                            <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="w-like">
-                                            <a href="portfolio-details.html"><span class="bi bi-plus-circle"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
-    </div>
-
+</body>
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
