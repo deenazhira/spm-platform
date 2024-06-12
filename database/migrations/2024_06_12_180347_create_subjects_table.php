@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
+            $table->string('username'); // Field for student username
+            $table->string('code')->unique(); // Field for subject code
+            $table->string('title'); // Field for subject title
+            $table->integer('topic_number'); // Field for topic number
             $table->timestamps();
         });
     }

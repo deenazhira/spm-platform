@@ -9,6 +9,13 @@ class Subject extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'username',
+        'code',
+        'title',
+        'topic_number',
+    ];
+
     /**
      * Get the topics related to this subject.
      */
