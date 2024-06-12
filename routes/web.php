@@ -12,6 +12,9 @@ Route::get('/reflection', function () {
     return view('reflection');
 });
 
+Route::get('/index', function () {
+    return view('subjects.index');
+});
 
 Route::middleware([
     'auth:sanctum',
