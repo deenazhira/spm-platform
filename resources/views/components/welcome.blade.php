@@ -163,18 +163,18 @@
                </div>
            </div>
            <div class="row">
-               @foreach ([
-                   ['title' => 'Bahasa Melayu', 'image' => 'assets/img/bm.jpg'],
-                   ['title' => 'English', 'image' => 'assets/img/english.jpg'],
-                   ['title' => 'Mathematics', 'image' => 'assets/img/maths.jpeg'],
-                   ['title' => 'Physics', 'image' => 'assets/img/physics.png'],
-                   ['title' => 'Chemistry', 'image' => 'assets/img/chem.jpg'],
-                   ['title' => 'Biology', 'image' => 'assets/img/work-6.jpg'],
-                   ['title' => 'Sejarah', 'image' => 'assets/img/work-6.jpg'],
-                   ['title' => 'Pendidikan Islam', 'image' => 'assets/img/work-6.jpg'],
-                   ['title' => 'Additional Mathematics', 'image' => 'assets/img/work-6.jpg']
-               ] as $subject)
-               <div class="col-md-4">
+            @foreach ([
+                ['title' => 'Bahasa Melayu', 'code' => 'LMBD 2021', 'image' => 'assets/img/bm.jpg'],
+                ['title' => 'English', 'code' => 'ENGL 1234', 'image' => 'assets/img/english.jpg'],
+                ['title' => 'Mathematics', 'code' => 'MATH 101', 'image' => 'assets/img/maths.jpeg'],
+                ['title' => 'Physics', 'code' => 'PHL 668', 'image' => 'assets/img/physics.png'],
+                ['title' => 'Chemistry', 'code' => 'CHEM 555', 'image' => 'assets/img/chem.jpg'],
+                ['title' => 'Biology', 'code' => 'BIO 303', 'image' => 'assets/img/work-6.jpg'],
+                ['title' => 'Sejarah', 'code' => 'SJRH 440', 'image' => 'assets/img/work-6.jpg'],
+                ['title' => 'Pendidikan Islam', 'code' => 'PAI 202', 'image' => 'assets/img/work-6.jpg'],
+                ['title' => 'Additional Mathematics', 'code' => 'ADDM 202', 'image' => 'assets/img/work-6.jpg']
+            ] as $subject)
+            <div class="col-md-4">
                    <div class="work-box">
                        <a href="{{ $subject['image'] }}" data-gallery="portfolioGallery" class="portfolio-lightbox">
                            <div class="work-img">
@@ -186,7 +186,7 @@
                                <div class="col-sm-8">
                                    <h2 class="w-title">{{ $subject['title'] }}</h2>
                                    <div class="w-more">
-                                       <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
+                                    <span class="w-ctegory">{{ $subject['code'] }}</span> / <span class="w-date">See Topics</span>
                                    </div>
                                </div>
                                <div class="col-sm-4">
