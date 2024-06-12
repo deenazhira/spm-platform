@@ -55,6 +55,9 @@ use App\Http\Controllers\SubjectController;
 
 Route::get('/add-subject', [SubjectController::class, 'create'])->name('add.subject');
 
+Route::post('/subjects', [SubjectController::class, 'store'])->name('subjects.store');
+
+
 use App\Http\Controllers\ProfileController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
