@@ -1,5 +1,5 @@
 <x-app-layout>
-    <
+
     </x-slot>
 
     <div class="py-12">
