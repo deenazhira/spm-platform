@@ -11,7 +11,6 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url('assets/img/aina.jpeg');
             background-size: cover;
             background-repeat: no-repeat;
             display: flex;
