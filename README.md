@@ -91,22 +91,22 @@ The main objectives of the SPM Student Learning Platform are:
 ### Profile manage
 
 #### i) View profile details
--Fetch student’s details from the database
--Display student’s name and email
--There are options to edit or update
+- Fetch student’s details from the database
+- Display student’s name and email
+- There are options to edit or update
 
 #### ii) Password
--Edit password
--Create and save new password
+- Edit password
+- Create and save new password
 
 #### iii) Authentication
--Enable two-factor authentication
+- Enable two-factor authentication
 
 #### iv) Terminate browser session
--Log out from any browser log in
+- Log out from any browser log in
 
 #### v) Delete account
--Delete the existing user account
+- Delete the existing user account
 
 
 
