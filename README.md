@@ -120,7 +120,8 @@ The main objectives of the SPM Student Learning Platform are:
 ## 6.0 Project System Captured Screen
 
 Mainpage
-![mainpage](https://github.com/deenazhira/spm-platform/assets/172114212/a0326d44-cb08-4445-acb2-369afc3e9518)
+![mainpage01](https://github.com/deenazhira/spm-platform/assets/172114212/1f58f3fa-fc22-49b5-9755-ba40a0bc0014)
+
 
 Mainpage (Cont)
 ![mainpage 2](https://github.com/deenazhira/spm-platform/assets/172114212/4f582797-93d9-4d87-aca7-7868762be23a)
@@ -158,9 +159,9 @@ Subjects
 
 
 ## 7.0 Challenges/Difficulties
-1. Challenge to debug all errors that happened when trying to install and run the codes
-2. Difficulties in connecting the model, view and controllers
-3. Difficulties in understanding the use github.
+1. Challenge to debug all errors that happened when trying to install and run the codes.
+2. Difficulties in connecting the model, view and controllers.
+3. Difficulties in understanding to use github to connect with vscode.
 
 ## 8.0 REFERENCES
   
