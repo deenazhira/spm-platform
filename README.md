@@ -65,7 +65,7 @@ The main objectives of the SPM Student Learning Platform are:
   
 #### ii) View List of Subject
 - Display list of subject added
-- Options to edit or delete
+  
 
 ### Reflection Feedback
 #### i) Add
