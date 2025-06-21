@@ -63,12 +63,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/user/logout-other-browser-sessions', [ProfileController::class, 'logoutOtherBrowserSessions'])->name('user-browser-sessions.logout');
     Route::delete('/user', [ProfileController::class, 'deleteUser'])->name('user.delete');
 });
-<<<<<<< HEAD:routes/web.php
 
 
 Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects.index');
 Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
 Route::post('/subjects', [SubjectController::class, 'store'])->name('subjects.store');
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('subjects.show');
-=======
->>>>>>> 1ba4bb801dd819045c4f9ebe4a53f7a7a07a64fa:Enhanced/routes/web.php
