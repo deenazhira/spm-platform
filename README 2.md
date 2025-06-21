@@ -7,6 +7,9 @@
 ## **Title:** SPM Learning Platform 
 
 ## Introduction
+The Student Learning Platform is a web application designed to support students in their studies by providing a comprehensive and interactive online learning environment. Utilizing the Laravel MVC framework, the platform aims to offer a seamless user experience with features designed to meet the specific needs of SPM students.
+
+With the rapid advancement of technology, traditional methods of learning are evolving, and online education is becoming increasingly popular. The Student Learning Platform leverages this trend by providing a convenient and accessible platform for students to engage with their studies anytime, anywhere.
 
 ## Objectives of the Enhancements
 - To protect user data from unauthorized access
