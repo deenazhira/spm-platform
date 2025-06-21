@@ -1,175 +1,39 @@
-# Group 
-1. Aina Najwa Maisarah Binti Mohamad Zulkarnain        (2212708)
-2. Husna Nadhirah Binti Khairul Anwar                  (2211170)
-3. Irdeena Zahierah Binti Zukipeli                     (2210496)
-4. Ahmad Syameer Syafiq bin Zulkefli                   (2121797)
+# Web Application Security Enhancement Report
 
-# SPM Student Learning Platform
+## Group Members
+1. Husna Nadhirah Binti Khairul Anwar - 2211170
+2. Irdeena Zahierah Binti Zukipeli - 2210496
 
-## 1.0 Introduction
+## **Title:** SPM Learning Platform 
 
-The SPM Student Learning Platform is a web application designed to support SPM students in their studies by providing a comprehensive and interactive online learning environment. Utilizing the Laravel MVC framework, the platform aims to offer a seamless user experience with features designed to meet the specific needs of SPM students.
+## Introduction
+The Student Learning Platform is a web application designed to support students in their studies by providing a comprehensive and interactive online learning environment. Utilizing the Laravel MVC framework, the platform aims to offer a seamless user experience with features designed to meet the specific needs of SPM students.
 
-With the rapid advancement of technology, traditional methods of learning are evolving, and online education is becoming increasingly popular. The SPM Student Learning Platform leverages this trend by providing a convenient and accessible platform for students to engage with their studies anytime, anywhere.
+With the rapid advancement of technology, traditional methods of learning are evolving, and online education is becoming increasingly popular. The Student Learning Platform leverages this trend by providing a convenient and accessible platform for students to engage with their studies anytime, anywhere.
 
-By integrating the Laravel MVC framework, the platform ensures scalability, security, and maintainability, allowing for seamless updates and enhancements over time. Through a user-friendly interface, students can navigate through various features effortlessly, making their learning journey intuitive and enjoyable.
+## Objectives of the Enhancements
+- To protect user data from unauthorized access
+- To apply strong security best practices
+- To reduce vulnerabilities reported by OWASP ZAP
 
-The core features of the platform include:
-- User Authentication
-- Chapter Management
-- Reflection Feedback
-- Profile Manage
+### 1.0 Vulnerability Report 
+**i) Before Enhancement**
 
-The SPM Student Learning Platform aims to empower students with the tools and resources they need to succeed academically while fostering a culture of lifelong learning and self-improvement. By harnessing the power of technology, the platform strives to revolutionize the way SPM students engage with their studies, paving the way for a brighter future.
+**Tool Used:** OWASP ZAP  
+**Scan Type:** Active  
+**Date of Scan:** 2025-06-20
 
-## 2.0 Objectives
+The scan detected 8 issues, with 2 medium, 4 low and 2 informational priority alerts.
 
-The main objectives of the SPM Student Learning Platform are:
-1. To provide an easy-to-use platform for SPM students to access study materials.
-2. To allow students to add, edit, and delete their reflections on what they have learned.
-3. To enable students to view and manage their profiles and track their achievements.
-4. To offer a secure login/logout system for user authentication.
+| Vulnerability     | Risk Level | Confidence Level | 
+|-------------------|------------|------------------|
+| CSP header not set     | Medium     | High             | 
+| Missing anti-clickjacking header              | Medium     | Medium           | 
+| Big Redirect Detected (Potential Sensitive Information Leak)     | Low     | Medium             | 
+| Cookie No HttpOnly Flag | Low       | Medium             | 
+| Server Leaks Information via "X-Powered-By" HTTP Response Header Field(s) | Low | Medium |
+| X-Content-Type-Options Header Missing | Low | Medium |
+| Information Disclosure - Suspicious Comments | Informational | Low |
+| Modern Web Application | Informational | Medium |
 
-## 3.0 Features and Functionalities
-
-### User
-
-#### i) Registration
-- Allow new user to create an account
-- Form to enter user details (username, email, password)
-- Validate email and password
-- Save user details to the database
-
-#### ii) Login
-- Allow registered user to log in
-- Form to enter username and password
-- Validate against database entries
-- Redirect to the dashboard
-
-#### iii) Logout
-- Redirect to login page after logout
-
-#### iv) Reset Password
-- Allow user to reset their password if forgotten
-- Form to confirm email address
-- Send password reset link to user’s email
-- Form to set a new password
-
-
-### Subject
-
-#### i) Add Subject
-- Form to enter subject details (subject, topic)
-- Save subject details to the database
-- Display new subject in the subject list
-  
-#### ii) View List of Subject
-- Display list of subject added
-- Options to edit or delete
-
-### Reflection Feedback
-#### i) Add
-- Allow students to write their reflection on what they have learned
-- Form to enter reflection details based on topic selection
-- Save reflection to the database
-- Display the new reflection in the list
-
-#### ii) Edit
-- Allow students to edit existing reflection details
-- Form to edit reflection details
-- Update reflection details in the database
-
-#### iii) Delete
-- Pop-up box to confirm deletion
-- Remove reflection from the database
-
-#### iv) View
-- Display list of reflections written for every topic
-- Options to view, edit, or delete
-
-
-### Profile manage
-
-#### i) View profile details
-- Fetch student’s details from the database
-- Display student’s name and email
-- There are options to edit or update
-
-#### ii) Password
-- Edit password
-- Create and save new password
-
-#### iii) Authentication
-- Enable two-factor authentication
-
-#### iv) Terminate browser session
-- Log out from any browser log in
-
-#### v) Delete account
-- Delete the existing user account
-
-
-
-## 4.0 ER Diagram
-![ER Diagram](https://raw.githubusercontent.com/nadhirahanwar/WebApp-GroupProject-/main/ER%20DIAGRAM.png)
-
-
-## 5.0 Sequence Diagram
-![SEQUENCE Diagram](https://raw.githubusercontent.com/nadhirahanwar/WebApp-GroupProject-/main/SEQ%20DIAGRAM.jpg)
-
-## 6.0 Project System Captured Screen
-
-Mainpage
-![mainpage](https://github.com/deenazhira/spm-platform/assets/172114212/a0326d44-cb08-4445-acb2-369afc3e9518)
-
-Mainpage (Cont)
-![mainpage 2](https://github.com/deenazhira/spm-platform/assets/172114212/4f582797-93d9-4d87-aca7-7868762be23a)
-
-Mainpage (Cont)
-![mainpage 3](https://github.com/deenazhira/spm-platform/assets/172114212/673097ec-a2d7-4545-b44c-07891c640815)
-
-Register
-![register](https://github.com/deenazhira/spm-platform/assets/172114212/3f661d14-1bf0-467c-9ff0-e5c6c8b15658)
-
-Login
-![login](https://github.com/deenazhira/spm-platform/assets/172114212/69a7a033-509b-4766-a0fd-81b28ce5b2a7)
-
-Dashboard
-![dashboard](https://github.com/deenazhira/spm-platform/assets/172114212/5fdef291-cea0-403b-b2b9-494e6c6f657a)
-
-Manage (Profile and Logout)
-![profile-logout](https://github.com/deenazhira/spm-platform/assets/172114212/8251f3e1-7d8e-48ac-9ebf-905ec05e4bf2)
-
-Profile
-![profile 1](https://github.com/deenazhira/spm-platform/assets/172114212/3640ad1f-1cc8-481f-882d-16c4af25b924)
-
-Profile(Cont)
-![profile 2](https://github.com/deenazhira/spm-platform/assets/172114212/2f9cfa62-505b-4cdd-bab1-99477122d6c8)
-
-Sidebar
-![Side bar](https://github.com/deenazhira/spm-platform/assets/172114212/4a23cdcb-4114-44fa-aafc-efd0ed51ddc9)
-
-Reflections
-![reflection](https://github.com/deenazhira/spm-platform/assets/172114212/f6a268be-e783-460c-a419-578c6ba81c2d)
-
-
-Subjects
-![Subjects](https://github.com/deenazhira/spm-platform/assets/172114212/c400c543-a7cf-425c-9f22-403f72f0aa89)
-
-
-## 7.0 Challenges/Difficulties
-1. Challenge to debug all errors that happened when trying to install and run the codes
-2. Difficulties in connecting the model, view and controllers
-3. Difficulties in understanding the use github.
-
-## 8.0 REFERENCES
-  
-1. SPMFlix. (2024, May 3). SPMFlix - Malaysia’s Largest Free Online Learning Platform
-https://www.spmflix.com/ 
-
-2. GeeksforGeeks. (2024, February 27). How to design ER diagrams for project management Software. GeeksforGeeks. https://www.geeksforgeeks.org/how-to-design-er-diagrams-for-project-management-software 
-
-3. Drexel University's School of Education. (n.d.). Benefits of Online and Virtual Learning. Retrieved from https://drexel.edu/soe/resources/student-teaching/advice/benefits-of-online-and-virtual-learning/
-
-
-
+![image](https://github.com/user-attachments/assets/419365bf-2977-4532-af3c-14ce0b60f622)
