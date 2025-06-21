@@ -33,14 +33,22 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        // Rate limiting for login
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower(
+                $request->input(Fortify::username()) . '|' . $request->ip()
+            ));
 
-            return Limit::perMinute(5)->by($throttleKey);
+            return Limit::perMinute(3)->by($throttleKey)->response(function () {
+                return response()->json([
+                    'message' => 'Too many login attempts. Please try again in 60 seconds.'
+                ], 429);
+            });
         });
 
+        // Rate limiting for two-factor authentication
         RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
+            return Limit::perMinute(3)->by($request->session()->get('login.id'));
         });
     }
 }
