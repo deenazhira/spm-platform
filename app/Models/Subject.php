@@ -9,11 +9,17 @@ class Subject extends Model
 {
     use HasFactory;
 
-    /**
-     * Get the topics related to this subject.
-     */
+    protected $fillable = [
+        'username',
+        'code',
+        'title',
+        'topic_number',
+    ];
+
+    // Define relationships if needed
     public function topics()
     {
         return $this->hasMany(Topic::class);
     }
 }
+
