@@ -40,8 +40,6 @@ Route::middleware([
 });
 
 // Registration Routes
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
 
 // Login Routes
 
