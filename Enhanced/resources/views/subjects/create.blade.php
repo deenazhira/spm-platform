@@ -80,10 +80,10 @@
 
         {{-- Display validation errors --}}
         @if ($errors->any())
-            <div class="error">
+            <div style="color: red;">
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>⚠ {{ $error }}</li>
+                        <li class="error">{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>

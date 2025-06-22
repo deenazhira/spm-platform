@@ -32,7 +32,7 @@ class SubjectController extends Controller
             'code' => 'required|string|max:255|unique:subjects,code',
             'title' => 'required|string|max:255',
             'topic_number' => 'required|integer',
-            'syllabus' => 'required|file|mimes:pdf|max:2048', // ✅ validate PDF only, max 2MB
+            'syllabus' => 'required|file|mimes:pdf|max:2048', // validate PDF only, max 2MB
         ]);
 
         // Store the uploaded file in storage/app/syllabi
