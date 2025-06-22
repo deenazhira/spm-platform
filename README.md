@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Web Application Security Enhancement Report
 
 ## Group Members
@@ -8,7 +7,7 @@
 ## **Title:** SPM Learning Platform 
 
 ## Introduction
-The Student Learning Platform is a web application designed to support students in their studies by providing a comprehensive and interactive online learning environment. Utilizing the Laravel MVC framework, the platform aims to offer a seamless user experience with features designed to meet the specific needs of SPM students.
+The Student Learning Platform is a web application designed to support students in their studies by providing a comprehensive and interactive online learning environment. The platform aims to offer a seamless user experience with features designed to meet the specific needs of SPM students.
 
 With the rapid advancement of technology, traditional methods of learning are evolving, and online education is becoming increasingly popular. The Student Learning Platform leverages this trend by providing a convenient and accessible platform for students to engage with their studies anytime, anywhere.
 
@@ -17,7 +16,7 @@ With the rapid advancement of technology, traditional methods of learning are ev
 - To apply strong security best practices
 - To reduce vulnerabilities reported by OWASP ZAP
 
-### 1.0 Vulnerability Report 
+## 1.0 Vulnerability Report using OWASP ZAP Scanning
 **i) Before Enhancement**
 
 **Tool Used:** OWASP ZAP  
@@ -39,9 +38,56 @@ The scan detected 8 issues, with 2 medium, 4 low and 2 informational priority al
 
 ![image](https://github.com/user-attachments/assets/419365bf-2977-4532-af3c-14ce0b60f622)
 =======
-
-2FA
+## 2.0 Input Validation
+## 3.0 Authentication
+### 3.1 Password Policies
+During registration, strong password policies are enforced to make sure the passwords are uniques. These rules ensure complexity, uniqueness and minimum length.
+Password rules are defined in **`App\Actions\Fortify\CreateNewUser.php`** 
+```php
+Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => [
+                'required',
+                'string',
+                'min:8',                  // Minimum 8 characters
+                'regex:/[a-z]/',          // At least one lowercase letter
+                'regex:/[A-Z]/',          // At least one uppercase letter
+                'regex:/[0-9]/',          // At least one digit
+                'regex:/[@$!%*#?&]/',     // At least one special character
+                'confirmed',              // Must match password_confirmation
+            ],
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ])->validate();
+```
+### 3.2 Multi-Factor Authentication(MFA)
+The enhancement is made based on Time-based One-Time Password(TOTP) 2FA using Laravel Fortify. This features are applied under **`config/fortify.php`**.
+```php
+'features' => [
+    Features::twoFactorAuthentication([
+        'confirm' => true,
+        'confirmPassword' => true,
+    ]),
+],
+```
+To enable 2FA, user need to activate it in profile page. Under two factor authentication section, user need to click enable button and system will generate QR code. QR code need to be scanned via Google Authenticator and the code will be generated at their own device. After confirming the identity, user will get random recovery codes. When user wants to login again, TOTP code are required. 
+- QR code
+![image](https://github.com/user-attachments/assets/ad971298-5f7d-4ce9-817c-47d1bb6f6610)
+- Random recovery code
 ![image](https://github.com/user-attachments/assets/d240a474-6499-43e1-b923-35ed6b38bed8)
 
+### 3.3 Password stored using Bcrypt
+Passwords are hashed using Bcrypt. 
+### 3.4 Rate Limit
+### 3.5 Salt
+
+
+## 4.0 Authorization
+## 5.0 XSS and CSRF prevention
+### 5.1 Content Security Policy (CSP)
+### 5.2 Cross-site Scripting (XSS)
+### 5.3 Cross-Site Request Forgery (CSRF)
+## 6.0 Database Security Principles
+## 7.0 File Security Principles
 # spm-platform
 >>>>>>> 218459cccdc1890a17bcc997b414fe4f9c48f615
