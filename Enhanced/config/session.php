@@ -32,9 +32,9 @@ return [
     |
     */
 
-    'lifetime' => 15, // ✅ 15 minutes of inactivity
+    'lifetime' => 15, // 15 minutes of inactivity
 
-    'expire_on_close' => true, // ✅ Session expires on browser close
+    'expire_on_close' => true, // Session expires on browser close
 
     /*
     |--------------------------------------------------------------------------
