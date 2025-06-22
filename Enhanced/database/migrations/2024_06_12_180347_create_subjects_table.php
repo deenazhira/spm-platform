@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('code')->unique(); // Field for subject code
             $table->string('title'); // Field for subject title
             $table->integer('topic_number'); // Field for topic number
+            $table->string('syllabus_path')->nullable();
             $table->timestamps();
         });
     }

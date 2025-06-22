@@ -32,7 +32,11 @@ class SubjectController extends Controller
             'code' => 'required|string|max:255|unique:subjects,code',
             'title' => 'required|string|max:255',
             'topic_number' => 'required|integer',
+            'syllabus' => 'required|file|mimes:pdf|max:2048', // ✅ validate PDF only, max 2MB
         ]);
+
+        // Store the uploaded file in storage/app/syllabi
+        $syllabusPath = $request->file('syllabus')->store('syllabi');
 
         // Create and save the new subject
         $subject = new Subject;
@@ -40,6 +44,7 @@ class SubjectController extends Controller
         $subject->code = $validated['code'];
         $subject->title = $validated['title'];
         $subject->topic_number = $validated['topic_number'];
+        $subject->syllabus_path = $syllabusPath; // ✅ save path to DB
         $subject->save();
 
         // Redirect with success message
