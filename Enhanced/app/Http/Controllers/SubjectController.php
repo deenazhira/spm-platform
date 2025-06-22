@@ -50,8 +50,9 @@ class SubjectController extends Controller
         // Redirect with success message
         return redirect()->route('subjects.index')->with('success', 'Subject added successfully!');
     }
+
     public function downloadSyllabus($filename)
-{
+    {
     // Sanitize filename to prevent traversal
     if (!preg_match('/^[\w\-.]+$/', $filename)) {
         abort(400, 'Invalid filename');
