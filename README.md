@@ -39,5 +39,9 @@ The scan detected 8 issues, with 2 medium, 4 low and 2 informational priority al
 
 ![image](https://github.com/user-attachments/assets/419365bf-2977-4532-af3c-14ce0b60f622)
 =======
+
+2FA
+![image](https://github.com/user-attachments/assets/d240a474-6499-43e1-b923-35ed6b38bed8)
+
 # spm-platform
 >>>>>>> 218459cccdc1890a17bcc997b414fe4f9c48f615
