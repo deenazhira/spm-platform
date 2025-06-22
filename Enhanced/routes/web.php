@@ -65,3 +65,4 @@ Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects.ind
 Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
 Route::post('/subjects', [SubjectController::class, 'store'])->name('subjects.store');
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('subjects.show');
+Route::get('/download-syllabus/{filename}', [SubjectController::class, 'downloadSyllabus'])->name('syllabus.download');

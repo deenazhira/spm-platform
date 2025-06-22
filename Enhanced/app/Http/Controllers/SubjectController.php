@@ -36,7 +36,7 @@ class SubjectController extends Controller
         ]);
 
         // Store the uploaded file in storage/app/syllabi
-        $syllabusPath = $request->file('syllabus')->store('syllabi');
+        $syllabusPath = $request->file('syllabus')->store('syllabi', 'public');
 
         // Create and save the new subject
         $subject = new Subject;
@@ -44,10 +44,26 @@ class SubjectController extends Controller
         $subject->code = $validated['code'];
         $subject->title = $validated['title'];
         $subject->topic_number = $validated['topic_number'];
-        $subject->syllabus_path = $syllabusPath; // ✅ save path to DB
+        $subject->syllabus_path = $syllabusPath; // save path to DB
         $subject->save();
 
         // Redirect with success message
         return redirect()->route('subjects.index')->with('success', 'Subject added successfully!');
     }
+    public function downloadSyllabus($filename)
+{
+    // Sanitize filename to prevent traversal
+    if (!preg_match('/^[\w\-.]+$/', $filename)) {
+        abort(400, 'Invalid filename');
+    }
+
+    $filePath = 'syllabi/' . $filename;
+
+    // Use Laravel storage to securely fetch file
+    if (!Storage::disk('public')->exists($filePath)) {
+        abort(404, 'File not found');
+    }
+
+    return Storage::disk('public')->download($filePath);
+}
 }
