@@ -8,12 +8,10 @@ use Illuminate\Http\Request;
 class ReflectionController extends Controller
 {
     public function index()
-{
-    $reflections = Reflection::all();
-    return view('reflection', compact('reflections'));
-}
-
-
+    {
+        $reflections = Reflection::all();
+        return view('reflection', compact('reflections'));
+    }
 
     public function create()
     {
@@ -23,10 +21,15 @@ class ReflectionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'reflection' => 'required',
+            'reflection' => 'required|string|max:2000',
         ]);
 
-        Reflection::create($request->all());
+        // Sanitize input to remove potentially dangerous HTML
+        $cleanInput = strip_tags($request->input('reflection'));
+
+        Reflection::create([
+            'reflection' => $cleanInput
+        ]);
 
         return redirect()->route('reflections.index')
                          ->with('success', 'Reflection added successfully.');
@@ -45,21 +48,24 @@ class ReflectionController extends Controller
     public function update(Request $request, Reflection $reflection)
     {
         $request->validate([
-            'reflection' => 'required',
+            'reflection' => 'required|string|max:2000',
         ]);
 
-        $reflection->update($request->all());
+        $cleanInput = strip_tags($request->input('reflection'));
+
+        $reflection->update([
+            'reflection' => $cleanInput
+        ]);
 
         return redirect()->route('reflections.index')
                          ->with('success', 'Reflection updated successfully.');
     }
 
     public function destroy(Reflection $reflection)
-{
-    $reflection->delete();
+    {
+        $reflection->delete();
 
-    return redirect()->route('reflection.index')
-                     ->with('success', 'Reflection deleted successfully.');
+        return redirect()->route('reflection.index')
+                         ->with('success', 'Reflection deleted successfully.');
+    }
 }
-}
-
