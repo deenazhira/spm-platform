@@ -14,6 +14,7 @@ class Subject extends Model
         'code',
         'title',
         'topic_number',
+        'syllabus_path',
     ];
 
     // Define relationships if needed
