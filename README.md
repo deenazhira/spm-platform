@@ -78,16 +78,44 @@ To enable 2FA, user need to activate it in profile page. Under two factor authen
 
 ### 3.3 Password stored using Bcrypt
 Passwords are hashed using Bcrypt. 
-### 3.4 Rate Limit
-### 3.5 Salt
+- **`app/Actions/Fortify/CreateNewUser.php`**
+```php
+use Illuminate\Support\Facades\Hash;
 
+return User::create([
+            'password' => Hash::make($input['password']),
+        ]);
+```
+### 3.4 Rate Limit
+- Limited login attempts to 3 per minute using `RateLimiter` to prevent brute-force attacks
+### 3.5 Salt
+### 3.6 Session Management
+- Cookies use HttpOnly, Secure, SameSite
+- Update settings in **`config/session.php`**
+```php
+'lifetime' => 15, // 15 minutes of inactivity
+'expire_on_close' => true, // Session expires on browser close
+
+'cookie' => env(
+        'SESSION_COOKIE',
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+    ),
+'http_only' => env('SESSION_HTTP_ONLY', true),
+'same_site' => env('SESSION_SAME_SITE', 'lax'),
+```
 
 ## 4.0 Authorization
+
 ## 5.0 XSS and CSRF prevention
 ### 5.1 Content Security Policy (CSP)
 ### 5.2 Cross-site Scripting (XSS)
+
 ### 5.3 Cross-Site Request Forgery (CSRF)
+- Tokens **`@csrf`** are used in all forms
+- 
 ## 6.0 Database Security Principles
 ## 7.0 File Security Principles
+
+## References
 # spm-platform
 >>>>>>> 218459cccdc1890a17bcc997b414fe4f9c48f615
