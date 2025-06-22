@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\Role; //
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -17,12 +18,20 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        // Create user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
+        // Auto assign "student" role
+        $studentRole = Role::where('name', 'student')->first();
+        if ($studentRole) {
+            $user->roles()->attach($studentRole->id);
+        }
+
+        // Log in
         Auth::login($user);
 
         return redirect()->intended('/dashboard');
