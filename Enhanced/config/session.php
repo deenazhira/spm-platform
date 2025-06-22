@@ -32,9 +32,9 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => 15, // ✅ 15 minutes of inactivity
 
-    'expire_on_close' => env('SESSION_EXPIRE_ON_CLOSE', false),
+    'expire_on_close' => true, // ✅ Session expires on browser close
 
     /*
     |--------------------------------------------------------------------------
