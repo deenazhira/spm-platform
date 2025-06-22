@@ -34,12 +34,12 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        $salt = Str::random(8); // ✅ generate salt
+        $salt = Str::random(8); //  generate salt
 
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'salt' => $salt, // ✅ store salt
+            'salt' => $salt, // store salt
             'password' => Hash::make($input['password']),
         ]);
     }
