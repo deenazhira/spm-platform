@@ -60,8 +60,29 @@ Validator::make($input, [
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 ```
+- User need to make passwords with a minimum length of 8 characters and requirements for uppercase, lowercase, numbers, and special characters.
 ### 3.2 Multi-Factor Authentication(MFA)
-The enhancement is made based on Time-based One-Time Password(TOTP) 2FA using Laravel Fortify. This features are applied under **`config/fortify.php`**.
+The enhancement is made based on Time-based One-Time Password(TOTP) 2FA using Laravel Fortify. 
+- **`Migrations/add_two_factor_columns_to_users_table.php`**
+```php
+public function up(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->text('two_factor_secret')
+                ->after('password')
+                ->nullable();
+
+            $table->text('two_factor_recovery_codes')
+                ->after('two_factor_secret')
+                ->nullable();
+
+            if (Fortify::confirmsTwoFactorAuthentication()) {
+                $table->timestamp('two_factor_confirmed_at')
+                    ->after('two_factor_recovery_codes')
+                    ->nullable();
+            }
+```
+- **`config/fortify.php`**
 ```php
 'features' => [
     Features::twoFactorAuthentication([
@@ -86,9 +107,69 @@ return User::create([
             'password' => Hash::make($input['password']),
         ]);
 ```
+- In database, passwords will be generated to ''$2y$12$....'
+  
 ### 3.4 Rate Limit
 - Limited login attempts to 3 per minute using `RateLimiter` to prevent brute-force attacks
+- **`app/Providers/FortifyServiceProvider.php`**
+```php
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
+public function boot(): void{
+        RateLimiter::for('login', function (Request $request) {
+        $throttleKey = Str::lower($request->input('email')) . '|' . $request->ip();
+        return Limit::perMinute(3)->by($throttleKey)->response(function () {
+        return response()->json([
+            'message' => 'Forced test - too many attempts'
+        ], 429);
+    });
+```
+- `Limit::perMinute(3)` allow user to login max 3 attempts per minute.
+- On the 4th attempt, user will get `Forced test - too many attempts` error
+![image](https://github.com/user-attachments/assets/722b8590-cc93-4b3f-8d76-e5b9eaea516f)
+
 ### 3.5 Salt
+- **`app/Models/User.php`**
+```php
+protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'salt',
+    ];
+```
+- **`Migrations\add_salt_to_users_table.php`**
+```php
+public function up(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('salt')->nullable()->after('password');
+        });
+    }
+    public function down(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('salt');
+        });
+    }
+```
+- **`app/Actions/Fortify/CreateNewUser.php`**
+```php
+use Illuminate\Support\Str;
+
+$salt = Str::random(8); //  generate salt
+        return User::create([
+            'salt' => $salt, // store salt
+        ]);
+```
+- **`app/Providers/FortifyServiceProvider.php`**
+```php
+use App\Actions\Fortify\CreateNewUser;
+Fortify::createUsersUsing(CreateNewUser::class);
+```
+- As result, unique salt will be generated in database under salt column. This will ensure, new user get their own salt. 
+
 ### 3.6 Session Management
 - Cookies use HttpOnly, Secure, SameSite
 - Update settings in **`config/session.php`**
