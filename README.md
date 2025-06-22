@@ -189,13 +189,83 @@ Fortify::createUsersUsing(CreateNewUser::class);
 
 ## 5.0 XSS and CSRF prevention
 ### 5.1 Content Security Policy (CSP)
-### 5.2 Cross-site Scripting (XSS)
+- CSP helps prevent XSS by limiting which scripts can run in the browser.
+- Add CSP header in **`app/Http/Middleware/ContentSecurityPolicy.php`**
+```php
+public function handle(Request $request, Closure $next)
+    {
+        $response = $next($request);
+        // Add Content-Security-Policy headers
+        $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data:");
+        return $response;
+    }
+```
+- **`app/Http/Kernel.php`**
+```php
+\App\Http\Middleware\ContentSecurityPolicy::class,
+```
+- **`ReflectionController.php`**
+```php
+            $request->validate([
+            'reflection' => 'required|string|max:2000',]);
+        // Sanitize input to remove potentially dangerous HTML
+        $cleanInput = strip_tags($request->input('reflection'));
+        Reflection::create([
+            'reflection' => $cleanInput
+        ]);
+```
+- `script_tags` function removes any HTML tags, including <script> that could cause XSS.
 
+### 5.2 Cross-site Scripting (XSS)
+- Use `{{ }}` instead of `{!! !!}`
+```php
+<x-label for="email" value="{{ __('Email') }}" />
+<x-label for="password" value="{{ __('Password') }}" />
+<span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+```
 ### 5.3 Cross-Site Request Forgery (CSRF)
+- **`app/Http/Kernel.php`**
+```php
+\App\Http\Middleware\VerifyCsrfToken::class,
+```
 - Tokens **`@csrf`** are used in all forms
-- 
+```php
+<form method="POST" action="{{ route('login') }}">
+            @csrf
+```
 ## 6.0 Database Security Principles
 ## 7.0 File Security Principles
+- Only allow specific file format, PDF only, to avoid malicious file upload like .exe, ,zip and .php.
+- Prevent large files to avoid Denial of Service(DoS) attack
+- File Upload using Laravel's Secure API
+- Regex `/^[\w\-.]+$/` ensures only valid filenames. This will prevent path traversal like `../../`
+- Uploaded files are stored inside `storage/app/public/syllabi`, not inside public/.
+- `download()` method prevents direct file access via URL
+- **`SubjectController.php`**
+```php
+$validated = $request->validate([
+            'syllabus' => 'required|file|mimes:pdf|max:2048', // validate PDF only, max 2MB
+        ]);
+        $syllabusPath = $request->file('syllabus')->store('syllabi', 'public');
+        
+        $subject->syllabus_path = $syllabusPath; 
+        $subject->save();
+public function downloadSyllabus($filename)
+    {
+    // Sanitize filename to prevent traversal
+    if (!preg_match('/^[\w\-.]+$/', $filename)) {
+        abort(400, 'Invalid filename');
+    }
+
+    $filePath = 'syllabi/' . $filename;
+
+    // Use Laravel storage to securely fetch file
+    if (!Storage::disk('public')->exists($filePath)) {
+        abort(404, 'File not found');
+    }
+
+    return Storage::disk('public')->download($filePath);
+```
 
 ## References
 # spm-platform
