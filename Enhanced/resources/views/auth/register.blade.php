@@ -39,7 +39,9 @@
                          name="password"
                          required
                          autocomplete="new-password"
-                         minlength="8" />
+                         minlength="8"
+                         pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}"
+                         title="Password must be at least 8 characters long, include uppercase and lowercase letters, a number, and a special character." />
             </div>
 
             <div class="mt-4">
@@ -48,7 +50,8 @@
                          type="password"
                          name="password_confirmation"
                          required
-                         autocomplete="new-password" />
+                         autocomplete="new-password"
+                         minlength="8" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -56,7 +59,6 @@
                     <x-label for="terms">
                         <div class="flex items-center">
                             <x-checkbox name="terms" id="terms" required />
-
                             <div class="ms-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
                                     'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' . __('Terms of Service') . '</a>',
