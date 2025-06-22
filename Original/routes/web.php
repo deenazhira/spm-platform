@@ -63,3 +63,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/user/logout-other-browser-sessions', [ProfileController::class, 'logoutOtherBrowserSessions'])->name('user-browser-sessions.logout');
     Route::delete('/user', [ProfileController::class, 'deleteUser'])->name('user.delete');
 });
+Route::middleware(['auth', 'isStudent'])->group(function () {
+    Route::get('/student/dashboard', function () {
+        return view('student.dashboard'); // Make sure this blade exists
+    })->name('student.dashboard');
+
+    Route::post('/student/add-subject/{subject}', [StudentSubjectController::class, 'addSubject'])->name('student.subject.add');
+
+    Route::resource('reflections', ReflectionController::class);
+});
+
