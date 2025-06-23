@@ -61,6 +61,9 @@ Validator::make($input, [
         ])->validate();
 ```
 - User need to make passwords with a minimum length of 8 characters and requirements for uppercase, lowercase, numbers, and special characters.
+
+---
+
 ### 3.2 Multi-Factor Authentication(MFA)
 The enhancement is made based on Time-based One-Time Password(TOTP) 2FA using Laravel Fortify. 
 - **`Migrations/add_two_factor_columns_to_users_table.php`**
@@ -97,6 +100,7 @@ To enable 2FA, user need to activate it in profile page. Under two factor authen
 - Random recovery code
 ![image](https://github.com/user-attachments/assets/d240a474-6499-43e1-b923-35ed6b38bed8)
 
+---
 ### 3.3 Password stored using Bcrypt
 Passwords are hashed using Bcrypt. 
 - **`app/Actions/Fortify/CreateNewUser.php`**
@@ -108,6 +112,8 @@ return User::create([
         ]);
 ```
 - In database, passwords will be generated to ''$2y$12$....'
+
+---
   
 ### 3.4 Rate Limit
 - Limited login attempts to 3 per minute using `RateLimiter` to prevent brute-force attacks
@@ -128,6 +134,8 @@ public function boot(): void{
 - `Limit::perMinute(3)` allow user to login max 3 attempts per minute.
 - On the 4th attempt, user will get `Forced test - too many attempts` error
 ![image](https://github.com/user-attachments/assets/722b8590-cc93-4b3f-8d76-e5b9eaea516f)
+
+---
 
 ### 3.5 Salt
 - **`app/Models/User.php`**
@@ -170,6 +178,8 @@ Fortify::createUsersUsing(CreateNewUser::class);
 ```
 - As result, unique salt will be generated in database under salt column. This will ensure, new user get their own salt. 
 
+---
+
 ### 3.6 Session Management
 - Cookies use HttpOnly, Secure, SameSite
 - Update settings in **`config/session.php`**
@@ -185,7 +195,158 @@ Fortify::createUsersUsing(CreateNewUser::class);
 'same_site' => env('SESSION_SAME_SITE', 'lax'),
 ```
 
-## 4.0 Authorization
+---
+
+## **4.0 Authorization**
+### 4.1 Role-Based Access Control (RBAC)
+
+The platform uses a dynamic **Role and Permission** model to enforce access control. Each user can have one or more roles, and each role can be linked to multiple permissions.
+
+#### Models Involved:
+
+* `User`: Has many roles via `user_roles` table.
+* `Role`: Belongs to many permissions via `role_permissions` table.
+* `Permission`: Defines fine-grained access rights.
+
+#### Example Database Tables:
+
+* `users`
+* `roles`
+* `permissions`
+* `user_roles` (pivot)
+* `role_permissions` (pivot)
+
+#### Code Implementation:
+
+##### `User.php`
+
+```php
+public function roles()
+{
+    return $this->belongsToMany(Role::class, 'user_roles');
+}
+
+public function hasRole($roleName)
+{
+    return $this->roles()->where('name', $roleName)->exists();
+}
+
+public function hasPermission($permission)
+{
+    foreach ($this->roles as $role) {
+        if ($role->permissions()->where('description', $permission)->exists()) {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+##### `Role.php`
+
+```php
+public function permissions()
+{
+    return $this->belongsToMany(Permission::class, 'role_permissions');
+}
+
+public function users()
+{
+    return $this->belongsToMany(User::class, 'user_roles');
+}
+```
+
+##### `Permission.php`
+
+```php
+public function roles()
+{
+    return $this->belongsToMany(Role::class, 'role_permissions');
+}
+```
+
+---
+
+### 4.2 Middleware Authorization
+
+A custom middleware named `IsStudent` restricts access to pages that should only be available to users with the `student` role.
+
+##### `app/Http/Middleware/IsStudent.php`
+
+```php
+public function handle($request, Closure $next)
+{
+    if (Auth::check() && Auth::user()->hasRole('student')) {
+        return $next($request);
+    }
+
+    abort(403, 'Unauthorized access. Students only.');
+}
+```
+
+##### `app/Http/Kernel.php`
+
+```php
+protected $routeMiddleware = [
+    ...
+    'isStudent' => \App\Http\Middleware\IsStudent::class,
+];
+```
+
+##### `web.php` (Route Restriction Example)
+
+```php
+Route::middleware(['auth', 'isStudent'])->group(function () {
+    Route::get('/student/dashboard', function () {
+        return view('student.dashboard');
+    })->name('student.dashboard');
+});
+```
+
+---
+
+### 4.3 Auto-Assign Role on Registration
+
+During registration, the system automatically assigns the `student` role to new users.
+
+##### `RegisterController.php`
+
+```php
+public function register(RegisterRequest $request)
+{
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+    ]);
+
+    // Auto assign role
+    $studentRole = Role::where('name', 'student')->first();
+    if ($studentRole) {
+        $user->roles()->attach($studentRole->id);
+    }
+
+    Auth::login($user);
+    return redirect()->intended('/dashboard');
+}
+```
+
+---
+
+### 4.4 Authorization Best Practices Implementation
+
+| Best Practice                       | Implimentation                                                                   |
+| ----------------------------------- | --------------------------------------------------------------------------------------- |
+| **Failing Closed**                  | All middleware aborts with 403 if access isn't explicitly granted.                      |
+| **Least Privilege**                 | Roles restrict what each user can access.            |
+| **Separation of Duties**            | Admin roles (e.g., `admin`, `student`) are handled separately in RBAC logic.            |
+| **Centralized Authorization Logic** | All permissions and roles are managed via database and reusable model methods.          |
+| **Minimized Custom Code**           | Authorization checks use reusable helper methods like `hasRole()` and `hasPermission()`. |
+| **Server-Side Enforcement**         | All checks (middleware, controller) are done on the server, no client-side logic.      |
+| **Unique Accounts**                 | Each user registers uniquely.     |
+| **Authorization on Every Request**  | Middleware checks are enforced before access to routes or resources.                    |
+
+---
 
 ## 5.0 XSS and CSRF prevention
 ### 5.1 Content Security Policy (CSP)
