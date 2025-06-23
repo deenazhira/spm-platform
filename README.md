@@ -188,8 +188,6 @@ Fortify::createUsersUsing(CreateNewUser::class);
 
 Authorization controls which users can access specific features or pages. The SPM Learning Platform follows **Authorization Best Practices** by implementing **Role-Based Access Control (RBAC)** and several layered security enhancements.
 
----
-
 ### 4.1 Role-Based Access Control (RBAC)
 
 The platform uses a dynamic **Role and Permission** model to enforce access control. Each user can have one or more roles, and each role can be linked to multiple permissions.
