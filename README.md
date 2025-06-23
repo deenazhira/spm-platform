@@ -186,6 +186,90 @@ Fortify::createUsersUsing(CreateNewUser::class);
 ```
 
 ## 4.0 Authorization
+## **4.0 Authorization – Best Practices**
+
+Authorization was implemented using **Role-Based Access Control (RBAC)** to ensure users access only what they are permitted to. The system enforces restrictions using roles and middleware to comply with several key **web authorization security best practices**.
+
+### Role Assignment
+
+When a new user registers, they are automatically assigned the **`student`** role:
+
+* In **`RegisterController.php`**:
+
+```php
+$studentRole = Role::where('name', 'student')->first();
+if ($studentRole) {
+    $user->roles()->attach($studentRole->id);
+}
+```
+
+### Middleware: Failing Closed & Least Privilege
+
+A custom middleware `IsStudent` ensures only users with the student role can access student-specific features:
+
+* **`app/Http/Middleware/IsStudent.php`**
+
+```php
+if (Auth::check() && Auth::user()->hasRole('student')) {
+    return $next($request);
+}
+abort(403, 'Unauthorized access. Students only.');
+```
+
+### Protected Routes: Centralized Authorization
+
+* Middleware is applied in **`web.php`**:
+
+```php
+Route::middleware(['auth', 'isStudent'])->group(function () {
+    Route::get('/student/dashboard', function () {
+        return view('student.dashboard');
+    })->name('student.dashboard');
+});
+```
+
+This limits access to student routes and ensures **authorization is enforced on every request.**
+
+### RBAC: Centralized & Flexible Authorization
+
+* The `User`, `Role`, and `Permission` models are connected via pivot tables:
+
+```php
+public function hasRole($roleName)
+{
+    return $this->roles()->where('name', $roleName)->exists();
+}
+
+public function hasPermission($permission)
+{
+    foreach ($this->roles as $role) {
+        if ($role->permissions()->where('description', $permission)->exists()) {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+* This allows defining roles like `student`, `admin`, etc., and assigning permissions accordingly.
+
+---
+
+### 🔐 How This Implements Best Practices:
+
+| Best Practice                 | Implementation                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------- |
+| **Failing Closed**            | Unauthorized users see 403 error via middleware.                                            |
+| **Least Privilege**           | New users get "student" role with minimal rights.                                           |
+| **Separating Duties**         | Admin routes (to be added) can be separated from student routes using `isAdmin` middleware. |
+| **Strong Policies**           | Role checks are consistently enforced with middleware and role checks.                      |
+| **Unique Accounts**           | Each user registers uniquely via email.                                                     |
+| **Authorize Every Request**   | All protected routes use middleware to authorize access.                                    |
+| **Centralized Authorization** | Roles and permissions are stored in DB and checked through shared model logic.              |
+| **Minimize Custom Logic**     | Laravel middleware and Eloquent ORM used for clean, reusable logic.                         |
+| **Server-side Authorization** | No role logic is handled on the frontend.                                                   |
+| **Mistrust Inputs**           | Authorization is checked on the server regardless of frontend state.                        |
+
 
 ## 5.0 XSS and CSRF prevention
 ### 5.1 Content Security Policy (CSP)
