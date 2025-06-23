@@ -489,6 +489,8 @@ public function handle(Request $request, Closure $next)
 ```
 ## 6.0 Database Security Principles
 ## 7.0 File Security Principles
+- Run `php artisan storage:link` to create a symbolic link
+- This means only intended files like syllabus PDFs are accessible, not everything in storage.
 - Only allow specific file format, PDF only, to avoid malicious file upload like .exe, ,zip and .php.
 - Prevent large files to avoid Denial of Service(DoS) attack
 - File Upload using Laravel's Secure API
