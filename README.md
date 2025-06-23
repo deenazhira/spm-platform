@@ -39,6 +39,103 @@ The scan detected 8 issues, with 2 medium, 4 low and 2 informational priority al
 ![image](https://github.com/user-attachments/assets/419365bf-2977-4532-af3c-14ce0b60f622)
 =======
 ## 2.0 Input Validation
+Perfect — you've shared everything needed! Here's the **Input Validation** section for your report:
+
+---
+
+## **2.0 Input Validation**
+
+### 2.1 Server-Side Validation
+
+Server-side validation is implemented using **Laravel Form Request Classes**, namely:
+
+#### `RegisterRequest.php`
+
+Located at `app/Http/Requests/RegisterRequest.php`, this file ensures robust validation during user registration.
+
+```php
+public function rules()
+{
+    return [
+        'name' => ['required', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => [
+            'required',
+            'string',
+            'min:8',
+            'confirmed',
+            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/'
+        ],
+    ];
+}
+```
+
+* **Name**: Must only contain letters and spaces (`regex:/^[a-zA-Z\s]+$/`)
+* **Email**: Valid format, unique
+* **Password**: Strong complexity required:
+
+  * Minimum 8 characters
+  * At least one lowercase letter
+  * At least one uppercase letter
+  * At least one digit
+  * At least one special character
+  * Must match password confirmation
+
+Custom message for name:
+
+```php
+'name.regex' => 'The name may only contain letters and spaces.'
+```
+
+#### `LoginRequest.php`
+
+Validates login inputs:
+
+```php
+'email' => 'required|string|email',
+'password' => 'required|string',
+```
+
+Ensures both fields are present and correctly formatted.
+
+---
+
+### Client-Side Validation
+
+Client-side validations are embedded in the **Blade view forms**, such as `login.blade.php` and `register.blade.php`.
+
+Example from `login.blade.php`:
+
+```blade
+<x-input id="email"
+         type="email"
+         name="email"
+         required
+         autocomplete="username" />
+```
+
+**HTML5 input types and attributes used:**
+
+* `type="email"` for format checking
+* `required` to ensure field is not empty
+* `autocomplete` for user convenience
+* Password field also uses `type="password"` and `required`
+
+These prevent submission of empty or invalid format fields before even reaching the server.
+
+---
+
+### Summary of Validation Techniques
+
+| Layer         | Technique                             | File(s)                                   |
+| ------------- | ------------------------------------- | ----------------------------------------- |
+| Client-side   | HTML5 attributes (`required`, `type`) | `register.blade.php`, `login.blade.php`   |
+| Server-side   | Laravel Form Request validation rules | `RegisterRequest.php`, `LoginRequest.php` |
+| Regex         | Custom format enforcement             | `RegisterRequest.php`                     |
+| Confirm match | Password + password confirmation      | `RegisterRequest.php`                     |
+
+---
+
 ## 3.0 Authentication
 ### 3.1 Password Policies
 During registration, strong password policies are enforced to make sure the passwords are uniques. These rules ensure complexity, uniqueness and minimum length.
