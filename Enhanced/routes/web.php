@@ -66,3 +66,7 @@ Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subj
 Route::post('/subjects', [SubjectController::class, 'store'])->name('subjects.store');
 Route::get('/subjects/{subject}', [SubjectController::class, 'show'])->name('subjects.show');
 Route::get('/download-syllabus/{filename}', [SubjectController::class, 'downloadSyllabus'])->name('syllabus.download');
+
+Route::get('/test-csp', function () {
+    return response('CSP check')->header('Content-Security-Policy', "default-src 'self'");
+});
