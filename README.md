@@ -186,7 +186,6 @@ Fortify::createUsersUsing(CreateNewUser::class);
 ```
 
 ## 4.0 Authorization
-## **4.0 Authorization – Best Practices**
 
 Authorization was implemented using **Role-Based Access Control (RBAC)** to ensure users access only what they are permitted to. The system enforces restrictions using roles and middleware to comply with several key **web authorization security best practices**.
 
