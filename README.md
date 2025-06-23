@@ -488,6 +488,59 @@ public function handle(Request $request, Closure $next)
             @csrf
 ```
 ## 6.0 Database Security Principles
+### **6.1 SQL Injection Prevention**
+#### **Input Validation and Sanitization**
+
+* All user inputs are validated using **Form Request classes** like `RegisterRequest` and `LoginRequest`.
+* Rules are applied to ensure inputs are of the correct format and type (e.g., valid email, password rules).
+
+```php
+'email' => 'required|string|email',
+'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+```
+
+> This prevents malicious SQL content from being passed through inputs.
+
+---
+
+### **6.2 Database User Privilege Limitation**
+
+Following the **"least privilege" principle**, a dedicated MySQL user was created with limited rights:
+
+```sql
+CREATE USER 'spm'@'localhost' IDENTIFIED BY 'securePass123!';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `spm-project`.* TO 'spm'@'localhost';
+```
+
+* Avoids using the default `root` user
+* Ensures that even if the app is compromised, attackers cannot drop tables or access other databases
+
+**Updated `.env` file:**
+
+```env
+DB_USERNAME=spm
+DB_PASSWORD=securePass123!
+```
+
+---
+
+### **6.3 Secure Laravel DB Configuration**
+
+Laravel `.env` file is configured securely:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=spm-project
+DB_USERNAME=spm
+DB_PASSWORD=securePass123!
+```
+
+* `.env` file is excluded from GitHub to prevent password leaks.
+* Database connection settings are not hardcoded into codebase.
+
+
 ## 7.0 File Security Principles
 - Run `php artisan storage:link` to create a symbolic link
 - This means only intended files like syllabus PDFs are accessible, not everything in storage.
