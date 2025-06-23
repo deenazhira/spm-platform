@@ -38,13 +38,9 @@ The scan detected 8 issues, with 2 medium, 4 low and 2 informational priority al
 
 ![image](https://github.com/user-attachments/assets/419365bf-2977-4532-af3c-14ce0b60f622)
 =======
-## 2.0 Input Validation
-Perfect — you've shared everything needed! Here's the **Input Validation** section for your report:
-
 ---
 
-## **2.0 Input Validation**
-
+## 2.0 Input Validation
 ### 2.1 Server-Side Validation
 
 Server-side validation is implemented using **Laravel Form Request Classes**, namely:
@@ -100,7 +96,7 @@ Ensures both fields are present and correctly formatted.
 
 ---
 
-### Client-Side Validation
+### 2.2 Client-Side Validation
 
 Client-side validations are embedded in the **Blade view forms**, such as `login.blade.php` and `register.blade.php`.
 
