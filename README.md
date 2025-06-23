@@ -522,5 +522,6 @@ public function downloadSyllabus($filename)
 ```
 
 ## References
-# spm-platform
->>>>>>> 218459cccdc1890a17bcc997b414fe4f9c48f615
+After enhancement
+![image](https://github.com/user-attachments/assets/8e879bb9-f92b-474b-8d1e-287c1422af22)
+
