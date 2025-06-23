@@ -184,12 +184,6 @@ Fortify::createUsersUsing(CreateNewUser::class);
 'http_only' => env('SESSION_HTTP_ONLY', true),
 'same_site' => env('SESSION_SAME_SITE', 'lax'),
 ```
-
-## 4.0 Authorization
-Great! Here's your **updated and complete Authorization section** for your `README.md`, based on everything you've done: RBAC system, middleware, role-permission relationships, and auto-assigning roles.
-
----
-
 ## **4.0 Authorization**
 
 Authorization controls which users can access specific features or pages. The SPM Learning Platform follows **Authorization Best Practices** by implementing **Role-Based Access Control (RBAC)** and several layered security enhancements.
