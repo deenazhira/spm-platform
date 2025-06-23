@@ -487,6 +487,7 @@ public function handle(Request $request, Closure $next)
 <form method="POST" action="{{ route('login') }}">
             @csrf
 ```
+---
 ## 6.0 Database Security Principles
 ### **6.1 SQL Injection Prevention**
 #### **Input Validation and Sanitization**
@@ -499,7 +500,7 @@ public function handle(Request $request, Closure $next)
 'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
 ```
 
-> This prevents malicious SQL content from being passed through inputs.
+This prevents malicious SQL content from being passed through inputs.
 
 ---
 
@@ -540,7 +541,7 @@ DB_PASSWORD=securePass123!
 * `.env` file is excluded from GitHub to prevent password leaks.
 * Database connection settings are not hardcoded into codebase.
 
-
+---
 ## 7.0 File Security Principles
 - Run `php artisan storage:link` to create a symbolic link
 - This means only intended files like syllabus PDFs are accessible, not everything in storage.
