@@ -38,7 +38,100 @@ The scan detected 8 issues, with 2 medium, 4 low and 2 informational priority al
 
 ![image](https://github.com/user-attachments/assets/419365bf-2977-4532-af3c-14ce0b60f622)
 =======
+---
+
 ## 2.0 Input Validation
+### 2.1 Server-Side Validation
+
+Server-side validation is implemented using **Laravel Form Request Classes**, namely:
+
+#### `RegisterRequest.php`
+
+Located at `app/Http/Requests/RegisterRequest.php`, this file ensures robust validation during user registration.
+
+```php
+public function rules()
+{
+    return [
+        'name' => ['required', 'regex:/^[a-zA-Z\s]+$/', 'max:255'],
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => [
+            'required',
+            'string',
+            'min:8',
+            'confirmed',
+            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/'
+        ],
+    ];
+}
+```
+
+* **Name**: Must only contain letters and spaces (`regex:/^[a-zA-Z\s]+$/`)
+* **Email**: Valid format, unique
+* **Password**: Strong complexity required:
+
+  * Minimum 8 characters
+  * At least one lowercase letter
+  * At least one uppercase letter
+  * At least one digit
+  * At least one special character
+  * Must match password confirmation
+
+Custom message for name:
+
+```php
+'name.regex' => 'The name may only contain letters and spaces.'
+```
+
+#### `LoginRequest.php`
+
+Validates login inputs:
+
+```php
+'email' => 'required|string|email',
+'password' => 'required|string',
+```
+
+Ensures both fields are present and correctly formatted.
+
+---
+
+### 2.2 Client-Side Validation
+
+Client-side validations are embedded in the **Blade view forms**, such as `login.blade.php` and `register.blade.php`.
+
+Example from `login.blade.php`:
+
+```blade
+<x-input id="email"
+         type="email"
+         name="email"
+         required
+         autocomplete="username" />
+```
+
+**HTML5 input types and attributes used:**
+
+* `type="email"` for format checking
+* `required` to ensure field is not empty
+* `autocomplete` for user convenience
+* Password field also uses `type="password"` and `required`
+
+These prevent submission of empty or invalid format fields before even reaching the server.
+
+---
+
+### Summary of Validation Techniques
+
+| Layer         | Technique                             | File(s)                                   |
+| ------------- | ------------------------------------- | ----------------------------------------- |
+| Client-side   | HTML5 attributes (`required`, `type`) | `register.blade.php`, `login.blade.php`   |
+| Server-side   | Laravel Form Request validation rules | `RegisterRequest.php`, `LoginRequest.php` |
+| Regex         | Custom format enforcement             | `RegisterRequest.php`                     |
+| Confirm match | Password + password confirmation      | `RegisterRequest.php`                     |
+
+---
+
 ## 3.0 Authentication
 ### 3.1 Password Policies
 During registration, strong password policies are enforced to make sure the passwords are uniques. These rules ensure complexity, uniqueness and minimum length.
@@ -394,8 +487,64 @@ public function handle(Request $request, Closure $next)
 <form method="POST" action="{{ route('login') }}">
             @csrf
 ```
+---
 ## 6.0 Database Security Principles
+### **6.1 SQL Injection Prevention**
+#### **Input Validation and Sanitization**
+
+* All user inputs are validated using **Form Request classes** like `RegisterRequest` and `LoginRequest`.
+* Rules are applied to ensure inputs are of the correct format and type (e.g., valid email, password rules).
+
+```php
+'email' => 'required|string|email',
+'name' => ['required', 'regex:/^[a-zA-Z\s]+$/'],
+```
+
+This prevents malicious SQL content from being passed through inputs.
+
+---
+
+### **6.2 Database User Privilege Limitation**
+
+Following the **"least privilege" principle**, a dedicated MySQL user was created with limited rights:
+
+```sql
+CREATE USER 'spm'@'localhost' IDENTIFIED BY 'securePass123!';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `spm-project`.* TO 'spm'@'localhost';
+```
+
+* Avoids using the default `root` user
+* Ensures that even if the app is compromised, attackers cannot drop tables or access other databases
+
+**Updated `.env` file:**
+
+```env
+DB_USERNAME=spm
+DB_PASSWORD=securePass123!
+```
+
+---
+
+### **6.3 Secure Laravel DB Configuration**
+
+Laravel `.env` file is configured securely:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=spm-project
+DB_USERNAME=spm
+DB_PASSWORD=securePass123!
+```
+
+* `.env` file is excluded from GitHub to prevent password leaks.
+* Database connection settings are not hardcoded into codebase.
+
+---
 ## 7.0 File Security Principles
+- Run `php artisan storage:link` to create a symbolic link
+- This means only intended files like syllabus PDFs are accessible, not everything in storage.
 - Only allow specific file format, PDF only, to avoid malicious file upload like .exe, ,zip and .php.
 - Prevent large files to avoid Denial of Service(DoS) attack
 - File Upload using Laravel's Secure API
@@ -429,5 +578,6 @@ public function downloadSyllabus($filename)
 ```
 
 ## References
-# spm-platform
->>>>>>> 218459cccdc1890a17bcc997b414fe4f9c48f615
+After enhancement
+![image](https://github.com/user-attachments/assets/8e879bb9-f92b-474b-8d1e-287c1422af22)
+
