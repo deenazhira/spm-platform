@@ -61,6 +61,9 @@ Validator::make($input, [
         ])->validate();
 ```
 - User need to make passwords with a minimum length of 8 characters and requirements for uppercase, lowercase, numbers, and special characters.
+
+---
+
 ### 3.2 Multi-Factor Authentication(MFA)
 The enhancement is made based on Time-based One-Time Password(TOTP) 2FA using Laravel Fortify. 
 - **`Migrations/add_two_factor_columns_to_users_table.php`**
@@ -97,6 +100,7 @@ To enable 2FA, user need to activate it in profile page. Under two factor authen
 - Random recovery code
 ![image](https://github.com/user-attachments/assets/d240a474-6499-43e1-b923-35ed6b38bed8)
 
+---
 ### 3.3 Password stored using Bcrypt
 Passwords are hashed using Bcrypt. 
 - **`app/Actions/Fortify/CreateNewUser.php`**
@@ -108,6 +112,8 @@ return User::create([
         ]);
 ```
 - In database, passwords will be generated to ''$2y$12$....'
+
+---
   
 ### 3.4 Rate Limit
 - Limited login attempts to 3 per minute using `RateLimiter` to prevent brute-force attacks
@@ -128,6 +134,8 @@ public function boot(): void{
 - `Limit::perMinute(3)` allow user to login max 3 attempts per minute.
 - On the 4th attempt, user will get `Forced test - too many attempts` error
 ![image](https://github.com/user-attachments/assets/722b8590-cc93-4b3f-8d76-e5b9eaea516f)
+
+---
 
 ### 3.5 Salt
 - **`app/Models/User.php`**
@@ -170,6 +178,8 @@ Fortify::createUsersUsing(CreateNewUser::class);
 ```
 - As result, unique salt will be generated in database under salt column. This will ensure, new user get their own salt. 
 
+---
+
 ### 3.6 Session Management
 - Cookies use HttpOnly, Secure, SameSite
 - Update settings in **`config/session.php`**
@@ -184,10 +194,10 @@ Fortify::createUsersUsing(CreateNewUser::class);
 'http_only' => env('SESSION_HTTP_ONLY', true),
 'same_site' => env('SESSION_SAME_SITE', 'lax'),
 ```
+
+---
+
 ## **4.0 Authorization**
-
-Authorization controls which users can access specific features or pages. The SPM Learning Platform follows **Authorization Best Practices** by implementing **Role-Based Access Control (RBAC)** and several layered security enhancements.
-
 ### 4.1 Role-Based Access Control (RBAC)
 
 The platform uses a dynamic **Role and Permission** model to enforce access control. Each user can have one or more roles, and each role can be linked to multiple permissions.
@@ -335,6 +345,8 @@ public function register(RegisterRequest $request)
 | **Server-Side Enforcement**         | All checks (middleware, controller) are done on the server, no client-side logic.      |
 | **Unique Accounts**                 | Each user registers uniquely.     |
 | **Authorization on Every Request**  | Middleware checks are enforced before access to routes or resources.                    |
+
+---
 
 ## 5.0 XSS and CSRF prevention
 ### 5.1 Content Security Policy (CSP)
