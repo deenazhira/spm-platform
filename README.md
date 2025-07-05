@@ -578,6 +578,11 @@ public function downloadSyllabus($filename)
 ```
 
 ## References
+- Arias, D. (2025, Jan 17). Add Salt to Hashing: A better way to store passwords. https://auth0.com/blog/adding-salt-to-hashing-a-better-way-to-store-passwords/
+- Brkovic, R. (2024, March 29). How to make two-factor authentication in Laravel. https://medium.com/@brkovic.radomir/how-to-make-two-factor-authentication-in-laravel-c136c79c6c2a 
+- What is cross-site scripting (XSS) and how to prevent it? | Web Security Academy. (n.d.). https://portswigger.net/web-security/cross-site-scripting
+- OpenAI. (2025). ChatGPT (June 2025 version). https://chat.openai.com/
+  
 After enhancement
 ![image](https://github.com/user-attachments/assets/8e879bb9-f92b-474b-8d1e-287c1422af22)
 
